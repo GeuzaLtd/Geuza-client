@@ -4,6 +4,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Impact from "@/components/Impact";
+import Story from "@/components/Story";
+import Shop from "@/components/Shop";
+import Testimonial from "@/components/Testimonial";
+import Team from "@/components/Team";
+import Partners from "@/components/Partners";
+import Newsletter from "@/components/Newsletter";
 
 export default function Home() {
   return (
@@ -12,6 +18,13 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Impact />
+      <Story />
+      <Shop />
+      <Testimonial />
+      <Team />
+      <Newsletter />
+      <div className="h-[0.5px] bg-black mx-20" />
+      <Partners />
       {/* Additional sections will be added here */}
       <Footer />
     </main>
