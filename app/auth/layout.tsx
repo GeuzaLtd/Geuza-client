@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import Link from "next/link";
 
 const deviceImages = [
   "/images/device-1.png",
@@ -24,7 +25,7 @@ export default function AuthLayout({
     <div className="min-h-screen flex">
       {/* Left: Logo and Swiper */}
       <div className="flex flex-col items-center justify-center w-1/2 bg-white p-12 relative">
-        <div className="absolute top-8 left-8">
+        <Link href="/" className="absolute top-8 left-8">
           <Image
             src="/images/logo.png"
             alt="Geuza Logo"
@@ -32,7 +33,7 @@ export default function AuthLayout({
             height={40}
             className="object-contain"
           />
-        </div>
+        </Link>
         <div className="flex-1 flex items-center justify-center w-full">
           <Swiper
             modules={[Autoplay]}

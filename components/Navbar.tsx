@@ -51,12 +51,18 @@ export default function Navbar() {
 
         {/* Right side - Buttons */}
         <div className="flex items-center space-x-4">
-          <button className="h-10 px-6 rounded-full border border-[#348E38] text-[#348E38] hover:bg-[#348E38] hover:text-white transition-colors font-medium">
+          <Link
+            href="auth/login"
+            className="h-10 px-6 py-2 rounded-full border border-[#348E38] text-[#348E38] hover:bg-[#348E38] hover:text-white transition-colors font-medium"
+          >
             Sign in
-          </button>
-          <button className="h-10 px-6 rounded-full bg-[#FF7900] text-white hover:bg-[#e66a00] transition-colors font-medium">
+          </Link>
+          <Link
+            href="auth/register"
+            className="h-10 px-6 py-2 rounded-full bg-[#FF7900] text-white hover:bg-[#e66a00] transition-colors font-medium"
+          >
             Sign up for free
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
