@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Inter, Work_Sans } from "next/font/google";
+import { esRebond } from "./font";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +12,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const inter = Inter({ subsets: ["latin"] });
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  variable: "--font-work-sans",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${esRebond.variable} ${inter.className} ${workSans.variable}`}
       >
         {children}
       </body>
