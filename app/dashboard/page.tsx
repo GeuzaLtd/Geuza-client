@@ -19,6 +19,10 @@ const PartnersDashboard = dynamic(
 const BlogDashboard = dynamic(() => import("@/components/BlogDashboard"), {
   ssr: false,
 });
+const TestimonialDashboard = dynamic(
+  () => import("@/components/TestimonialDashboard"),
+  { ssr: false }
+);
 
 const stats = [
   {
@@ -179,6 +183,8 @@ export default function DashboardPage() {
         <PartnersDashboard />
       ) : selectedTab === "blog" ? (
         <BlogDashboard />
+      ) : selectedTab === "testimonials" ? (
+        <TestimonialDashboard />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white rounded-xl p-6">
           {/* Render testimonials cards here */}

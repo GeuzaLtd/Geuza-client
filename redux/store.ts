@@ -4,11 +4,13 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "./features/authSlice";
 import partnerReducer from "./features/partnerSlice";
 import blogReducer from "./features/blogSlice";
+import testimonialReducer from "./features/testimonialSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   partners: partnerReducer,
   blogs: blogReducer,
+  testimonials: testimonialReducer,
 });
 
 const persistConfig = {

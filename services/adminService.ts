@@ -76,3 +76,40 @@ export const deleteBlog = async (id: string) => {
   });
   return id;
 };
+
+// ---------------------------------
+// Testimonials
+// ---------------------------------
+export const getTestimonials = async () => {
+  const res = await axiosInstance.get("/testimonials/", {
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+  });
+  return res.data.data.testimonials;
+};
+
+export const addTestimonial = async (formData: FormData) => {
+  const res = await axiosInstance.post("/testimonials/", formData, {
+    headers: {
+      Authorization: `Bearer ${selectToken(store.getState())}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data.data.testimonial;
+};
+
+export const updateTestimonial = async (id: string, formData: FormData) => {
+  const res = await axiosInstance.patch(`/testimonials/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${selectToken(store.getState())}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data.data.testimonial;
+};
+
+export const deleteTestimonial = async (id: string) => {
+  await axiosInstance.delete(`/testimonials/${id}`, {
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+  });
+  return id;
+};
