@@ -4,7 +4,7 @@ import {
   addPartner,
   updatePartner as updatePartnerApi,
   deletePartner as deletePartnerApi,
-} from "@/services/partnerService";
+} from "@/services/adminService";
 
 export interface Partner {
   id: string;

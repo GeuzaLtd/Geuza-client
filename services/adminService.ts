@@ -1,14 +1,14 @@
 import axiosInstance from "@/utils/axios";
+import { RootState, store } from "@/redux/store";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1NTY2NDg2OS0zOTQ1LTQxNjEtOTc4Yy05MTZjNTlkM2U1YjMiLCJlbWFpbCI6ImFkbWluQGdldXphLmNvbSIsInR5cGUiOiJJTkRJVklEVUFMIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzUxMDE5NDM3fQ.vTF-GA-ZB0Evjw9dSowYFEkzy8hIUkO1nOnaSVIGCJc";
+const selectToken = (state: RootState) => state.auth.token;
 
 // ---------------------------------
 // Partners
 // ---------------------------------
 export const getPartners = async () => {
   const res = await axiosInstance.get("/partners/", {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
   });
   return res.data.data.partners;
 };
@@ -16,9 +16,63 @@ export const getPartners = async () => {
 export const addPartner = async (formData: FormData) => {
   const res = await axiosInstance.post("/partners/", formData, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${selectToken(store.getState())}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.partner;
+};
+
+export const updatePartner = async (id: string, formData: FormData) => {
+  const res = await axiosInstance.patch(`/partners/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${selectToken(store.getState())}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data.data.partner;
+};
+
+export const deletePartner = async (id: string) => {
+  await axiosInstance.delete(`/partners/${id}`, {
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+  });
+  return id;
+};
+
+// ---------------------------------
+// Blogs
+// ---------------------------------
+export const getBlogs = async () => {
+  const res = await axiosInstance.get("/blogs/", {
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+  });
+  return res.data.data.blogs;
+};
+
+export const addBlog = async (formData: FormData) => {
+  const res = await axiosInstance.post("/blogs/", formData, {
+    headers: {
+      Authorization: `Bearer ${selectToken(store.getState())}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data.data.blog;
+};
+
+export const updateBlog = async (id: string, formData: FormData) => {
+  const res = await axiosInstance.patch(`/blogs/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${selectToken(store.getState())}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data.data.blog;
+};
+
+export const deleteBlog = async (id: string) => {
+  await axiosInstance.delete(`/blogs/${id}`, {
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+  });
+  return id;
 };
