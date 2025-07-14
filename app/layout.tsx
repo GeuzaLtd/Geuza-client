@@ -2,23 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Inter, Work_Sans } from "next/font/google";
-import { esRebond } from "./font";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const inter = Inter({ subsets: ["latin"] });
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  variable: "--font-work-sans",
-});
+import { Providers } from "@/redux/provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,15 +11,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${esRebond.variable} ${inter.className} ${workSans.variable}`}
-      >
-        {children}
+      <body>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
