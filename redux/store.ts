@@ -5,12 +5,14 @@ import authReducer from "./features/authSlice";
 import partnerReducer from "./features/partnerSlice";
 import blogReducer from "./features/blogSlice";
 import testimonialReducer from "./features/testimonialSlice";
+import productReducer from "./features/productSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   partners: partnerReducer,
   blogs: blogReducer,
   testimonials: testimonialReducer,
+  products: productReducer,
 });
 
 const persistConfig = {

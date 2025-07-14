@@ -113,3 +113,40 @@ export const deleteTestimonial = async (id: string) => {
   });
   return id;
 };
+
+// ---------------------------------
+// Products
+// ---------------------------------
+export const getProducts = async () => {
+  const res = await axiosInstance.get("/products/", {
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+  });
+  return res.data.data.products;
+};
+
+export const addProduct = async (formData: FormData) => {
+  const res = await axiosInstance.post("/products/", formData, {
+    headers: {
+      Authorization: `Bearer ${selectToken(store.getState())}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data.data.product;
+};
+
+export const updateProduct = async (id: string, formData: FormData) => {
+  const res = await axiosInstance.patch(`/products/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${selectToken(store.getState())}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data.data.product;
+};
+
+export const deleteProduct = async (id: string) => {
+  await axiosInstance.delete(`/products/${id}`, {
+    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+  });
+  return id;
+};
