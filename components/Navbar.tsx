@@ -29,19 +29,19 @@ export default function Navbar() {
               Company
             </Link>
             <Link
-              href="#"
+              href="/products"
               className="text-black hover:text-[#348E38] transition-colors font-normal text-sm"
             >
               Products
             </Link>
             <Link
-              href="#"
+              href="/shop"
               className="text-black hover:text-[#348E38] transition-colors font-normal text-sm"
             >
               Shop
             </Link>
             <Link
-              href="#"
+              href="/blogs"
               className="text-black hover:text-[#348E38] transition-colors font-normal text-sm"
             >
               Blog

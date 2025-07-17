@@ -63,6 +63,7 @@ const tabs = [
 
 export default function DashboardPage() {
   const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
   const { partners, loading } = useSelector(
     (state: RootState) => state.partners
   );
@@ -78,9 +79,9 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (selectedTab === "partners") {
-      dispatch(fetchPartners() as any);
+      dispatch(fetchPartners({ token: token || "" }) as any);
     }
-  }, [dispatch, selectedTab]);
+  }, [dispatch, selectedTab, token]);
 
   const openAddModal = () => {
     setModalMode("add");
@@ -102,9 +103,15 @@ export default function DashboardPage() {
     formData.append("name", newPartner.name);
     if (newPartner.logo) formData.append("logo", newPartner.logo);
     if (modalMode === "add") {
-      await dispatch(createPartner(formData) as any);
+      await dispatch(createPartner({ formData, token: token || "" }) as any);
     } else if (modalMode === "edit" && editPartner) {
-      await dispatch(updatePartner({ id: editPartner.id, formData }) as any);
+      await dispatch(
+        updatePartner({
+          id: editPartner.id,
+          formData,
+          token: token || "",
+        }) as any
+      );
     }
     setShowModal(false);
     setEditPartner(null);
@@ -117,7 +124,9 @@ export default function DashboardPage() {
 
   const handleDeletePartner = async () => {
     if (deletePartnerId) {
-      await dispatch(deletePartner(deletePartnerId) as any);
+      await dispatch(
+        deletePartner({ id: deletePartnerId, token: token || "" }) as any
+      );
       setDeletePartnerId(null);
     }
   };

@@ -8,6 +8,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { IoArrowForward } from "react-icons/io5";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "@/redux/features/productSlice";
+import { RootState } from "@/redux/store";
 
 const devices = [
   {
@@ -56,6 +60,12 @@ const support = [
 ];
 
 export default function Shop() {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state: RootState) => state.products);
+  useEffect(() => {
+    dispatch(fetchProducts() as any);
+  }, [dispatch]);
+  //   console.log(products);
   return (
     <section className="w-full px-20 py-20 bg-white">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center space-y-8">
@@ -81,13 +91,13 @@ export default function Shop() {
             grabCursor
             style={{ paddingBottom: 40 }}
           >
-            {devices.map((device, idx) => (
+            {products.map((device, idx) => (
               <SwiperSlide key={idx}>
                 <div className="bg-[#F1F2F4] space-x-3 flex flex-col justify-between h-[380px] w-[300px] mx-auto shadow-sm p-6 relative">
                   <div className="w-full h-full relative mb-4">
                     <Image
-                      src={device.image}
-                      alt={device.title}
+                      src={device.thumbnailImage}
+                      alt={device.name}
                       fill
                       className="object-contain rounded-xl"
                     />
@@ -95,16 +105,16 @@ export default function Shop() {
                   <div className="flex items-center justify-between mt-4">
                     <div className="flex flex-col items-start">
                       <span className="text-black font-semibold text-lg">
-                        {device.title}
+                        {device.name}
                       </span>
                       <span
                         className={`text-xs mt-1 ${
-                          device.status === "In stock"
+                          device.minimum > 0
                             ? "text-[#348E38]"
                             : "text-gray-400"
                         }`}
                       >
-                        {device.status}
+                        {device.minimum > 0 ? "In stock" : "Out of stock"}
                       </span>
                     </div>
                     <button className="bg-white rounded-full p-3 shadow hover:bg-gray-100 transition-colors">

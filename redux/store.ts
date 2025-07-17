@@ -6,6 +6,7 @@ import partnerReducer from "./features/partnerSlice";
 import blogReducer from "./features/blogSlice";
 import testimonialReducer from "./features/testimonialSlice";
 import productReducer from "./features/productSlice";
+import cartReducer from "./features/cartSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   blogs: blogReducer,
   testimonials: testimonialReducer,
   products: productReducer,
+  cart: cartReducer,
 });
 
 const persistConfig = {

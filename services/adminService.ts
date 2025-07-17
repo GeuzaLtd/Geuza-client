@@ -1,41 +1,42 @@
 import axiosInstance from "@/utils/axios";
-import { RootState, store } from "@/redux/store";
-
-const selectToken = (state: RootState) => state.auth.token;
 
 // ---------------------------------
 // Partners
 // ---------------------------------
-export const getPartners = async () => {
+export const getPartners = async (token: string) => {
   const res = await axiosInstance.get("/partners/", {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return res.data.data.partners;
 };
 
-export const addPartner = async (formData: FormData) => {
+export const addPartner = async (formData: FormData, token: string) => {
   const res = await axiosInstance.post("/partners/", formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.partner;
 };
 
-export const updatePartner = async (id: string, formData: FormData) => {
+export const updatePartner = async (
+  id: string,
+  formData: FormData,
+  token: string
+) => {
   const res = await axiosInstance.patch(`/partners/${id}`, formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.partner;
 };
 
-export const deletePartner = async (id: string) => {
+export const deletePartner = async (id: string, token: string) => {
   await axiosInstance.delete(`/partners/${id}`, {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return id;
 };
@@ -43,36 +44,40 @@ export const deletePartner = async (id: string) => {
 // ---------------------------------
 // Blogs
 // ---------------------------------
-export const getBlogs = async () => {
+export const getBlogs = async (token: string) => {
   const res = await axiosInstance.get("/blogs/", {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return res.data.data.blogs;
 };
 
-export const addBlog = async (formData: FormData) => {
+export const addBlog = async (formData: FormData, token: string) => {
   const res = await axiosInstance.post("/blogs/", formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.blog;
 };
 
-export const updateBlog = async (id: string, formData: FormData) => {
+export const updateBlog = async (
+  id: string,
+  formData: FormData,
+  token: string
+) => {
   const res = await axiosInstance.patch(`/blogs/${id}`, formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.blog;
 };
 
-export const deleteBlog = async (id: string) => {
+export const deleteBlog = async (id: string, token: string) => {
   await axiosInstance.delete(`/blogs/${id}`, {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return id;
 };
@@ -80,36 +85,40 @@ export const deleteBlog = async (id: string) => {
 // ---------------------------------
 // Testimonials
 // ---------------------------------
-export const getTestimonials = async () => {
+export const getTestimonials = async (token: string) => {
   const res = await axiosInstance.get("/testimonials/", {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return res.data.data.testimonials;
 };
 
-export const addTestimonial = async (formData: FormData) => {
+export const addTestimonial = async (formData: FormData, token: string) => {
   const res = await axiosInstance.post("/testimonials/", formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.testimonial;
 };
 
-export const updateTestimonial = async (id: string, formData: FormData) => {
+export const updateTestimonial = async (
+  id: string,
+  formData: FormData,
+  token: string
+) => {
   const res = await axiosInstance.patch(`/testimonials/${id}`, formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.testimonial;
 };
 
-export const deleteTestimonial = async (id: string) => {
+export const deleteTestimonial = async (id: string, token: string) => {
   await axiosInstance.delete(`/testimonials/${id}`, {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return id;
 };
@@ -117,36 +126,40 @@ export const deleteTestimonial = async (id: string) => {
 // ---------------------------------
 // Products
 // ---------------------------------
-export const getProducts = async () => {
+export const getProducts = async (token: string) => {
   const res = await axiosInstance.get("/products/", {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return res.data.data.products;
 };
 
-export const addProduct = async (formData: FormData) => {
+export const addProduct = async (formData: FormData, token: string) => {
   const res = await axiosInstance.post("/products/", formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.product;
 };
 
-export const updateProduct = async (id: string, formData: FormData) => {
+export const updateProduct = async (
+  id: string,
+  formData: FormData,
+  token: string
+) => {
   const res = await axiosInstance.patch(`/products/${id}`, formData, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "multipart/form-data",
     },
   });
   return res.data.data.product;
 };
 
-export const deleteProduct = async (id: string) => {
+export const deleteProduct = async (id: string, token: string) => {
   await axiosInstance.delete(`/products/${id}`, {
-    headers: { Authorization: `Bearer ${selectToken(store.getState())}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
   return id;
 };

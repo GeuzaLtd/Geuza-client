@@ -4,41 +4,26 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-
-const testimonials = [
-  {
-    logo: "/images/logo.png",
-    name: "Jane Doe",
-    message:
-      "Geuza's devices have changed my life. The quality and affordability are unmatched!",
-  },
-  {
-    logo: "/images/logo.png",
-    name: "John Smith",
-    message:
-      "I love the mission behind Geuza. Their products are both sustainable and empowering.",
-  },
-  {
-    logo: "/images/logo.png",
-    name: "Amina Mwangi",
-    message:
-      "Thanks to Geuza, my son now has access to a prosthetic that fits and works perfectly.",
-  },
-  {
-    logo: "/images/logo.png",
-    name: "Samuel Kimani",
-    message:
-      "The support team was amazing and the delivery was fast. Highly recommend!",
-  },
-  {
-    logo: "/images/logo.png.png",
-    name: "Fatima Ali",
-    message:
-      "It feels good to know my purchase also helps the environment. Geuza is the future!",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTestimonials } from "@/redux/features/testimonialSlice";
+import { RootState } from "@/redux/store";
+import { useEffect } from "react";
+interface Testimonial {
+  id: string;
+  authorName: string;
+  testimonial: string;
+  companyImage: string;
+  companyName: string;
+}
 
 export default function Testimonial() {
+  const dispatch = useDispatch();
+  const { testimonials } = useSelector(
+    (state: RootState) => state.testimonials
+  );
+  useEffect(() => {
+    dispatch(fetchTestimonials() as any);
+  }, [dispatch]);
   return (
     <section className="w-full px-20 py-20 bg-white">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center space-y-8">
@@ -66,7 +51,7 @@ export default function Testimonial() {
           >
             {testimonials.map((testimonial, idx) => (
               <SwiperSlide key={idx}>
-                {({ isActive, isPrev, isNext }) => (
+                {({ isActive }) => (
                   <div
                     className={`border border-[#EBECEF] rounded-xl bg-white flex flex-col items-start justify-between w-[376px] h-[159.59px] mx-auto p-6 transition-all duration-300
                       ${isActive ? "translate-y-8 z-10" : "translate-y-0 z-0"}
@@ -76,20 +61,20 @@ export default function Testimonial() {
                     <div className="flex items-start space-x-3 mb-2">
                       <div className="w-8 h-8 overflow-hidden">
                         <Image
-                          src={testimonial.logo}
-                          alt={testimonial.name}
+                          src={testimonial.companyImage}
+                          alt={testimonial.companyName}
                           width={32}
                           height={32}
                           className="object-cover"
                         />
                       </div>
                       <span className="text-black font-bold text-base">
-                        {testimonial.name}
+                        {testimonial.companyName}
                       </span>
                     </div>
                     {/* Message */}
                     <p className="text-black/70 text-sm font-light text-left">
-                      {testimonial.message}
+                      {testimonial.testimonial}
                     </p>
                   </div>
                 )}

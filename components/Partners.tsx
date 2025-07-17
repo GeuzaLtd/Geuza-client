@@ -4,16 +4,26 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-
-const partners = [
-  { image: "/images/delete-2.jpg", alt: "Partner 1" },
-  { image: "/images/delete-2.jpg", alt: "Partner 2" },
-  { image: "/images/delete-2.jpg", alt: "Partner 3" },
-  { image: "/images/delete-2.jpg", alt: "Partner 4" },
-  { image: "/images/delete-2.jpg", alt: "Partner 5" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { RootState } from "@/redux/store";
+import { fetchPartners } from "@/redux/features/partnerSlice";
 
 export default function Partners() {
+  // interface Partner {
+  //   id: string;
+  //   name: string;
+  //   logo: string;
+  //   createdAt: string;
+  //   updatedAt: string;
+  // }
+
+  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
+  const { partners } = useSelector((state: RootState) => state.partners);
+  useEffect(() => {
+    dispatch(fetchPartners({ token: token || "" }) as any);
+  }, [dispatch, token]);
   return (
     <section className="w-full px-20 py-10 bg-white">
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between space-x-8">
@@ -32,12 +42,12 @@ export default function Partners() {
             grabCursor
             centeredSlides={false}
           >
-            {partners.map((partner, idx) => (
+            {partners.slice(0, 5).map((partner, idx) => (
               <SwiperSlide key={idx}>
                 <div className="flex items-center justify-center h-32 w-full">
                   <Image
-                    src={partner.image}
-                    alt={partner.alt}
+                    src={partner.logo}
+                    alt={partner.name}
                     width={200}
                     height={0}
                     className="object-contain max-h-16"

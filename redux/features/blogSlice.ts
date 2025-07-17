@@ -31,11 +31,11 @@ const initialState: BlogState = {
 
 export const fetchBlogs = createAsyncThunk<
   Blog[],
-  void,
+  { token: string },
   { rejectValue: string }
->("blogs/fetchAll", async (_, { rejectWithValue }) => {
+>("blogs/fetchAll", async ({ token }, { rejectWithValue }) => {
   try {
-    return await getBlogs();
+    return await getBlogs(token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to fetch blogs");
   }
@@ -43,11 +43,11 @@ export const fetchBlogs = createAsyncThunk<
 
 export const createBlog = createAsyncThunk<
   Blog,
-  FormData,
+  { formData: FormData; token: string },
   { rejectValue: string }
->("blogs/create", async (formData, { rejectWithValue }) => {
+>("blogs/create", async ({ formData, token }, { rejectWithValue }) => {
   try {
-    return await addBlog(formData);
+    return await addBlog(formData, token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to add blog");
   }
@@ -55,11 +55,11 @@ export const createBlog = createAsyncThunk<
 
 export const updateBlogThunk = createAsyncThunk<
   Blog,
-  { id: string; formData: FormData },
+  { id: string; formData: FormData; token: string },
   { rejectValue: string }
->("blogs/update", async ({ id, formData }, { rejectWithValue }) => {
+>("blogs/update", async ({ id, formData, token }, { rejectWithValue }) => {
   try {
-    return await updateBlog(id, formData);
+    return await updateBlog(id, formData, token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to update blog");
   }
@@ -67,11 +67,11 @@ export const updateBlogThunk = createAsyncThunk<
 
 export const deleteBlogThunk = createAsyncThunk<
   string,
-  string,
+  { id: string; token: string },
   { rejectValue: string }
->("blogs/delete", async (id, { rejectWithValue }) => {
+>("blogs/delete", async ({ id, token }, { rejectWithValue }) => {
   try {
-    return await deleteBlog(id);
+    return await deleteBlog(id, token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to delete blog");
   }

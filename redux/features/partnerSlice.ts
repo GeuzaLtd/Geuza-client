@@ -5,6 +5,7 @@ import {
   updatePartner as updatePartnerApi,
   deletePartner as deletePartnerApi,
 } from "@/services/adminService";
+import { RootState } from "../store";
 
 export interface Partner {
   id: string;
@@ -28,11 +29,11 @@ const initialState: PartnerState = {
 
 export const fetchPartners = createAsyncThunk<
   Partner[],
-  void,
-  { rejectValue: string }
->("partners/fetchAll", async (_, { rejectWithValue }) => {
+  { token: string },
+  { state: RootState; rejectValue: string }
+>("partners/fetchAll", async ({ token }, { getState, rejectWithValue }) => {
   try {
-    return await getPartners();
+    return await getPartners(token || "");
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to fetch partners");
   }
@@ -41,10 +42,11 @@ export const fetchPartners = createAsyncThunk<
 export const createPartner = createAsyncThunk<
   Partner,
   FormData,
-  { rejectValue: string }
->("partners/create", async (formData, { rejectWithValue }) => {
+  { state: RootState; rejectValue: string }
+>("partners/create", async (formData, { getState, rejectWithValue }) => {
   try {
-    return await addPartner(formData);
+    const token = getState().auth.token;
+    return await addPartner(formData, token!);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to add partner");
   }
@@ -53,22 +55,27 @@ export const createPartner = createAsyncThunk<
 export const updatePartner = createAsyncThunk<
   Partner,
   { id: string; formData: FormData },
-  { rejectValue: string }
->("partners/update", async ({ id, formData }, { rejectWithValue }) => {
-  try {
-    return await updatePartnerApi(id, formData);
-  } catch (err: any) {
-    return rejectWithValue(err.message || "Failed to update partner");
+  { state: RootState; rejectValue: string }
+>(
+  "partners/update",
+  async ({ id, formData }, { getState, rejectWithValue }) => {
+    try {
+      const token = getState().auth.token;
+      return await updatePartnerApi(id, formData, token!);
+    } catch (err: any) {
+      return rejectWithValue(err.message || "Failed to update partner");
+    }
   }
-});
+);
 
 export const deletePartner = createAsyncThunk<
   string,
   string,
-  { rejectValue: string }
->("partners/delete", async (id, { rejectWithValue }) => {
+  { state: RootState; rejectValue: string }
+>("partners/delete", async (id, { getState, rejectWithValue }) => {
   try {
-    return await deletePartnerApi(id);
+    const token = getState().auth.token;
+    return await deletePartnerApi(id, token!);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to delete partner");
   }
