@@ -23,9 +23,7 @@ export default function LoginPage() {
       if (resultAction.payload.user.role === "ADMIN") {
         router.push("/dashboard");
       } else {
-        // Optionally, you can dispatch logout or show error
-        // dispatch(logout());
-        alert("You are not authorized to access the dashboard.");
+        router.push("/");
       }
     }
   };
