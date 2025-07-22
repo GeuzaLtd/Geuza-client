@@ -17,6 +17,7 @@ export default function ProductViewModal({
   onClose,
   product,
 }: ProductViewModalProps) {
+  console.log("Hiii product", product);
   const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState<string | undefined>(
     undefined
@@ -25,6 +26,7 @@ export default function ProductViewModal({
     undefined
   );
   const [mainImage, setMainImage] = useState<string | undefined>(undefined);
+  const [quantity, setQuantity] = useState<number>(product?.minimum || 1);
 
   if (!open || !product) return null;
 
@@ -32,12 +34,8 @@ export default function ProductViewModal({
   const allImages = [product.thumbnailImage, ...(product.images || [])].filter(
     Boolean
   );
-  const minPrice = product.minimum;
-  const maxPrice = product.maximum;
-  const priceDisplay =
-    minPrice !== maxPrice
-      ? `${minPrice.toLocaleString()} - ${maxPrice.toLocaleString()} RWF`
-      : `${maxPrice.toLocaleString()} RWF`;
+  const minQty = product.minimum;
+  const maxQty = product.maximum;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
@@ -88,8 +86,27 @@ export default function ProductViewModal({
           </span>
           <h2 className="text-3xl font-bold mb-2">{product.name}</h2>
           <p className="text-gray-500 mb-4">{product.description}</p>
-          <div className="text-2xl font-bold text-[#348E38] mb-4">
-            {priceDisplay}
+          {/* Quantity Selector */}
+          <div className="flex items-center mb-4">
+            <button
+              className="w-8 h-8 flex items-center justify-center border rounded-l text-xl font-bold disabled:opacity-50"
+              onClick={() => setQuantity((q) => Math.max(minQty, q - 1))}
+              disabled={quantity <= minQty}
+              aria-label="Decrease quantity"
+            >
+              -
+            </button>
+            <span className="w-12 text-center text-lg font-semibold border-t border-b py-1">
+              {quantity}
+            </span>
+            <button
+              className="w-8 h-8 flex items-center justify-center border rounded-r text-xl font-bold disabled:opacity-50"
+              onClick={() => setQuantity((q) => Math.min(maxQty, q + 1))}
+              disabled={quantity >= maxQty}
+              aria-label="Increase quantity"
+            >
+              +
+            </button>
           </div>
           {/* Size Options */}
           {product.sizes && product.sizes.length > 0 && (
@@ -136,7 +153,9 @@ export default function ProductViewModal({
             <Button
               className="flex-1 bg-[#348E38] hover:bg-[#256b28] text-white font-semibold"
               onClick={() => {
-                dispatch(addToCart({ product, selectedSize, selectedColor }));
+                dispatch(
+                  addToCart({ product, selectedSize, selectedColor, quantity })
+                );
                 onClose();
               }}
             >

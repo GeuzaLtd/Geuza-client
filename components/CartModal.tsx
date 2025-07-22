@@ -15,11 +15,6 @@ export default function CartModal({ open, onClose }: CartModalProps) {
   const dispatch = useDispatch();
   const items = useSelector((state: RootState) => state.cart.items);
 
-  const subtotal = items.reduce(
-    (sum, item) => sum + (item.product.maximum || 0) * item.quantity,
-    0
-  );
-
   if (!open) return null;
 
   return (
@@ -57,12 +52,16 @@ export default function CartModal({ open, onClose }: CartModalProps) {
                   <span className="font-medium text-sm mb-1">
                     {item.product.name}
                   </span>
-                  <span className="text-xs text-gray-500 mb-1">
-                    {item.quantity} x{" "}
-                    <span className="text-green-600 font-semibold">
-                      RWF {item.product.maximum.toLocaleString()}
+                  <div className="text-xs text-gray-500 mb-1 ">
+                    <span className="">{item.quantity} items</span> -
+                    <span className="text-xs text-gray-500 mb-1 ml-1">
+                      {item.selectedSize}
+                    </span>{" "}
+                    -
+                    <span className="text-xs text-gray-500 mb-1 ml-1">
+                      {item.selectedColor}
                     </span>
-                  </span>
+                  </div>
                 </div>
                 <button
                   className="ml-2 text-gray-400 hover:text-red-500"
@@ -83,17 +82,8 @@ export default function CartModal({ open, onClose }: CartModalProps) {
             ))
           )}
         </div>
-        <div className="flex items-center justify-between py-2 border-t border-gray-100 mb-4">
-          <span className="text-sm text-gray-500">Sub-Total:</span>
-          <span className="font-semibold text-base">
-            {subtotal.toLocaleString()} RWF
-          </span>
-        </div>
         <Button className="w-full mb-2 bg-[#348E38] hover:bg-[#256b28] text-white font-semibold">
-          CHECKOUT NOW
-        </Button>
-        <Button variant="outline" className="w-full font-semibold">
-          VIEW CART
+          Pre-order NOW
         </Button>
       </div>
     </div>
