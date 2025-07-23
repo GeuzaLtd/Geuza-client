@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@/redux/features/productSlice";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/features/cartSlice";
+import { placeOrder } from "@/services/orderService";
 
 interface ProductViewModalProps {
   open: boolean;
@@ -17,7 +18,6 @@ export default function ProductViewModal({
   onClose,
   product,
 }: ProductViewModalProps) {
-  console.log("Hiii product", product);
   const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState<string | undefined>(
     undefined
@@ -36,6 +36,34 @@ export default function ProductViewModal({
   );
   const minQty = product.minimum;
   const maxQty = product.maximum;
+
+  const handlePreOrder = async () => {
+    console.log("Hiii product", product);
+    const specialInstructions = window.prompt(
+      "Special instructions (optional):",
+      ""
+    );
+    try {
+      await placeOrder({
+        items: [
+          {
+            productId: product.id,
+            quantity,
+            size: selectedSize,
+            color: selectedColor,
+            specialInstructions: specialInstructions || undefined,
+          },
+        ],
+      });
+      alert("Pre-order placed successfully!");
+      onClose();
+    } catch (err: any) {
+      alert(
+        "Failed to place pre-order: " +
+          (err?.response?.data?.message || err.message)
+      );
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
@@ -165,6 +193,12 @@ export default function ProductViewModal({
               CHECKOUT NOW
             </Button>
           </div>
+          <Button
+            className="w-full mt-4 bg-[#FF7900] hover:bg-[#e66a00] text-white font-semibold"
+            onClick={handlePreOrder}
+          >
+            Pre-order NOW
+          </Button>
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
-import { removeFromCart, updateQuantity } from "@/redux/features/cartSlice";
+import { clearCart, removeFromCart } from "@/redux/features/cartSlice";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
+import { placeOrder } from "@/services/orderService";
 
 interface CartModalProps {
   open: boolean;
@@ -16,6 +17,31 @@ export default function CartModal({ open, onClose }: CartModalProps) {
   const items = useSelector((state: RootState) => state.cart.items);
 
   if (!open) return null;
+
+  const handlePreOrder = async () => {
+    const orderItems = items.map((item) => ({
+      productId: item.product.id,
+      quantity: item.quantity,
+      size: item.selectedSize,
+      color: item.selectedColor,
+      specialInstructions:
+        window.prompt(
+          `Special instructions for ${item.product.name} (optional):`,
+          ""
+        ) || undefined,
+    }));
+    try {
+      await placeOrder({ items: orderItems });
+      alert("Pre-order placed successfully!");
+      dispatch(clearCart());
+      onClose();
+    } catch (err: any) {
+      alert(
+        "Failed to place pre-order: " +
+          (err?.response?.data?.message || err.message)
+      );
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
@@ -82,7 +108,11 @@ export default function CartModal({ open, onClose }: CartModalProps) {
             ))
           )}
         </div>
-        <Button className="w-full mb-2 bg-[#348E38] hover:bg-[#256b28] text-white font-semibold">
+        <Button
+          className="w-full mb-2 bg-[#348E38] hover:bg-[#256b28] text-white font-semibold"
+          onClick={handlePreOrder}
+          disabled={items.length === 0}
+        >
           Pre-order NOW
         </Button>
       </div>
