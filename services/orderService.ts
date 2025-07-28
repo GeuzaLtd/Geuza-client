@@ -13,13 +13,25 @@ export interface PlaceOrderPayload {
   items: OrderItem[];
 }
 
-const selectToken = (state: RootState) => state.auth.token;
+// const selectToken = (state: RootState) => state.auth.token;
 
-export async function placeOrder(payload: PlaceOrderPayload) {
+export async function placeOrder(payload: PlaceOrderPayload, token: string) {
   const response = await axios.post(`/orders/`, payload, {
     headers: {
-      Authorization: `Bearer ${selectToken(store.getState())}` as string,
+      Authorization: `Bearer ${token}`,
     },
   });
+  return response.data;
+}
+
+export async function getMyOrders(token: string, userType: string) {
+  const response = await axios.get(
+    `${userType === "ADMIN" ? "/orders/" : "/orders/my-orders/"}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return response.data;
 }
