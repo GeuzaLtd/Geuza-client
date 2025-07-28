@@ -60,7 +60,7 @@ export default function Navbar() {
             >
               Blog
             </Link>
-            {auth.token && (
+            {auth.token && auth.user?.role === "CLIENT" && (
               <Link
                 href="/my-orders"
                 className="text-black hover:text-[#348E38] transition-colors font-normal text-sm"

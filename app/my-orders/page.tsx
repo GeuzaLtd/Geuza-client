@@ -17,7 +17,7 @@ export default function MyOrdersPage() {
   const { token } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchOrders());
+    dispatch(fetchOrders({ userType: "CLIENT" }));
   }, [dispatch]);
 
   useEffect(() => {
