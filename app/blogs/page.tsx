@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { fetchBlogs } from "@/redux/features/blogSlice";
+import ThumbnailImage from "@/components/ThumbnailImage";
 
 // Truncate function to limit content length
 const truncateText = (text: string, maxLength: number) => {
@@ -28,14 +29,11 @@ export default function BlogsPage() {
       <Navbar />
       <main className="min-h-screen">
         {/* Thumbnail Image */}
-        <div className="w-full h-[500px] relative">
-          <Image
-            src="/images/company.jpg"
-            alt="Blogs Thumbnail"
-            fill
-            className="object-cover object-[center_10%]"
-          />
-        </div>
+        <ThumbnailImage
+          src="/images/company.jpg"
+          alt="Blogs Thumbnail"
+          className="w-full h-[350px] relative"
+        />
 
         {/* Content Section */}
         <div className="w-full px-20 py-20 bg-white">

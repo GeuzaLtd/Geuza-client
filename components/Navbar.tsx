@@ -37,7 +37,7 @@ export default function Navbar() {
           {/* Navigation items */}
           <div className="flex items-center space-x-6 ml-20">
             <Link
-              href="#"
+              href="/company"
               className="text-black hover:text-[#348E38] transition-colors font-normal text-sm"
             >
               Company

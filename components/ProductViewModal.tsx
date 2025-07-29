@@ -1,11 +1,16 @@
+"use client";
 import { useState } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/redux/features/productSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/features/cartSlice";
 import { placeOrder } from "@/services/orderService";
+import { RootState } from "@/redux/store";
+import { displayActualColor } from "@/utils/client";
+import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface ProductViewModalProps {
   open: boolean;
@@ -19,6 +24,7 @@ export default function ProductViewModal({
   product,
 }: ProductViewModalProps) {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [selectedSize, setSelectedSize] = useState<string | undefined>(
     undefined
   );
@@ -27,7 +33,10 @@ export default function ProductViewModal({
   );
   const [mainImage, setMainImage] = useState<string | undefined>(undefined);
   const [quantity, setQuantity] = useState<number>(product?.minimum || 1);
-
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [specialInstructions, setSpecialInstructions] = useState("");
+  const { token } = useSelector((state: RootState) => state.auth);
+  const [isLoading, setIsLoading] = useState(false);
   if (!open || !product) return null;
 
   // Compose all images: thumbnailImage + images[]
@@ -38,35 +47,43 @@ export default function ProductViewModal({
   const maxQty = product.maximum;
 
   const handlePreOrder = async () => {
-    console.log("Hiii product", product);
-    const specialInstructions = window.prompt(
-      "Special instructions (optional):",
-      ""
-    );
+    if (!showInstructions) {
+      setShowInstructions(true);
+      return;
+    }
+
+    setIsLoading(true);
     try {
-      await placeOrder({
-        items: [
-          {
-            productId: product.id,
-            quantity,
-            size: selectedSize,
-            color: selectedColor,
-            specialInstructions: specialInstructions || undefined,
-          },
-        ],
-      });
-      alert("Pre-order placed successfully!");
+      await placeOrder(
+        {
+          items: [
+            {
+              productId: product.id,
+              quantity,
+              size: selectedSize,
+              color: selectedColor,
+              specialInstructions: specialInstructions || undefined,
+            },
+          ],
+        },
+        token || ""
+      );
+      toast.success("Pre-order placed successfully!");
+      router.push("/my-orders");
       onClose();
     } catch (err: any) {
-      alert(
+      toast.error(
         "Failed to place pre-order: " +
           (err?.response?.data?.message || err.message)
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+      <ToastContainer />
       <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl p-8 relative flex flex-col md:flex-row gap-8">
         <button
           className="absolute top-4 right-4 text-gray-400 hover:text-black"
@@ -165,18 +182,37 @@ export default function ProductViewModal({
                 {product.colors.map((color) => (
                   <button
                     key={color}
-                    className={`w-8 h-8 rounded-full border-2 ${
+                    className={`w-8 h-8 rounded-full border-3 ${displayActualColor(
+                      color
+                    )} ${
                       selectedColor === color
                         ? "border-[#348E38]"
                         : "border-gray-200"
                     }`}
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: displayActualColor(color) }}
                     onClick={() => setSelectedColor(color)}
                   />
                 ))}
               </div>
             </div>
           )}
+
+          {/* Special Instructions Textarea */}
+          {showInstructions && (
+            <div className="w-full mb-4">
+              <label className="block text-sm font-medium mb-2">
+                Special Instructions (optional)
+              </label>
+              <textarea
+                value={specialInstructions}
+                onChange={(e) => setSpecialInstructions(e.target.value)}
+                placeholder="Enter any special instructions for your order..."
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#348E38] focus:border-transparent"
+                rows={3}
+              />
+            </div>
+          )}
+
           <div className="flex gap-2 w-full mt-4">
             <Button
               className="flex-1 bg-[#348E38] hover:bg-[#256b28] text-white font-semibold"
@@ -196,9 +232,26 @@ export default function ProductViewModal({
           <Button
             className="w-full mt-4 bg-[#FF7900] hover:bg-[#e66a00] text-white font-semibold"
             onClick={handlePreOrder}
+            disabled={isLoading}
           >
-            Pre-order NOW
+            {isLoading
+              ? "SUBMITTING..."
+              : showInstructions
+              ? "SUBMIT PRE-ORDER"
+              : "Pre-order NOW"}
           </Button>
+          {showInstructions && (
+            <Button
+              variant="outline"
+              className="w-full mt-2"
+              onClick={() => {
+                setShowInstructions(false);
+                setSpecialInstructions("");
+              }}
+            >
+              Cancel
+            </Button>
+          )}
         </div>
       </div>
     </div>

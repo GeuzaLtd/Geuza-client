@@ -135,7 +135,7 @@ export default function ProductsPage() {
                     </div>
 
                     <Link
-                      href={`/products/${product.id}`}
+                      href={`/shop`}
                       className="text-[#348E38] underline font-medium text-sm hover:text-[#2a6f2e] transition-colors"
                     >
                       View in store

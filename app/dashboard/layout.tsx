@@ -40,9 +40,9 @@ export default function DashboardLayout({
     "Dashboard";
 
   return (
-    <div className="flex min-h-screen bg-[#F5F5F5]">
+    <div className="flex max-h-screen bg-[#F5F5F5]">
       {/* Sidebar */}
-      <aside className="w-[250px] bg-white border-r border-gray-200 flex flex-col py-6 px-4 justify-between">
+      <aside className="w-[250px] bg-white border-r border-gray-200 flex flex-col py-6 px-4 justify-between h-screen">
         <div>
           {/* Logo */}
           <div className="w-full mb-28 flex items-center justify-center">
@@ -138,7 +138,7 @@ export default function DashboardLayout({
           </div>
         </header>
         {/* Page Content */}
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>
   );
