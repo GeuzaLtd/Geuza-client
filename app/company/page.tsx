@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 import Values from "@/components/Values";
+import ThumbnailImage from "@/components/ThumbnailImage";
 
 export default function CompanyPage() {
   return (
@@ -14,14 +15,11 @@ export default function CompanyPage() {
       <Navbar />
       <main className="min-h-screen">
         {/* Thumbnail Image */}
-        <div className="w-full h-[500px] relative">
-          <Image
-            src="/images/company.jpg"
-            alt="Company Thumbnail"
-            fill
-            className="object-cover object-[center_10%]"
-          />
-        </div>
+        <ThumbnailImage
+          src="/images/company.jpg"
+          alt="Company Thumbnail"
+          className="w-full h-[350px] relative"
+        />
 
         {/* Content Section */}
         <div className="w-full px-48 py-20 bg-white">

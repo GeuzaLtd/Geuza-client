@@ -5,6 +5,7 @@ import {
   updateProduct,
   deleteProduct,
 } from "@/services/adminService";
+import { RootState } from "../store";
 
 export interface Product {
   id: string;
@@ -35,10 +36,11 @@ const initialState: ProductState = {
 export const fetchProducts = createAsyncThunk<
   Product[],
   void,
-  { rejectValue: string }
->("products/fetchAll", async (_, { rejectWithValue }) => {
+  { state: RootState; rejectValue: string }
+>("products/fetchAll", async (_, { getState, rejectWithValue }) => {
   try {
-    return await getProducts();
+    const token = (getState() as RootState).auth.token;
+    return await getProducts(token!);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to fetch products");
   }
@@ -47,10 +49,11 @@ export const fetchProducts = createAsyncThunk<
 export const createProduct = createAsyncThunk<
   Product,
   FormData,
-  { rejectValue: string }
->("products/create", async (formData, { rejectWithValue }) => {
+  { state: RootState; rejectValue: string }
+>("products/create", async (formData, { getState, rejectWithValue }) => {
   try {
-    return await addProduct(formData);
+    const token = (getState() as RootState).auth.token;
+    return await addProduct(formData, token!);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to add product");
   }
@@ -59,22 +62,27 @@ export const createProduct = createAsyncThunk<
 export const updateProductThunk = createAsyncThunk<
   Product,
   { id: string; formData: FormData },
-  { rejectValue: string }
->("products/update", async ({ id, formData }, { rejectWithValue }) => {
-  try {
-    return await updateProduct(id, formData);
-  } catch (err: any) {
-    return rejectWithValue(err.message || "Failed to update product");
+  { state: RootState; rejectValue: string }
+>(
+  "products/update",
+  async ({ id, formData }, { getState, rejectWithValue }) => {
+    try {
+      const token = (getState() as RootState).auth.token;
+      return await updateProduct(id, formData, token!);
+    } catch (err: any) {
+      return rejectWithValue(err.message || "Failed to update product");
+    }
   }
-});
+);
 
 export const deleteProductThunk = createAsyncThunk<
   string,
   string,
-  { rejectValue: string }
->("products/delete", async (id, { rejectWithValue }) => {
+  { state: RootState; rejectValue: string }
+>("products/delete", async (id, { getState, rejectWithValue }) => {
   try {
-    return await deleteProduct(id);
+    const token = (getState() as RootState).auth.token;
+    return await deleteProduct(id, token!);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to delete product");
   }

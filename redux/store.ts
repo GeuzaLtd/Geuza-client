@@ -7,6 +7,7 @@ import blogReducer from "./features/blogSlice";
 import testimonialReducer from "./features/testimonialSlice";
 import productReducer from "./features/productSlice";
 import cartReducer from "./features/cartSlice";
+import orderReducer from "./features/orderSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,12 +16,13 @@ const rootReducer = combineReducers({
   testimonials: testimonialReducer,
   products: productReducer,
   cart: cartReducer,
+  orders: orderReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"], // Only persist auth reducer
+  whitelist: ["auth", "cart", "orders"], // Only persist auth reducer
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
