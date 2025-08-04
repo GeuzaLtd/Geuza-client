@@ -29,7 +29,7 @@ export default function PartnersDashboard() {
 
   useEffect(() => {
     dispatch(fetchPartners({ token: token || "" }) as any);
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const openAddModal = () => {
     setModalMode("add");
@@ -56,12 +56,6 @@ export default function PartnersDashboard() {
     formData.append("name", newPartner.name);
     if (newPartner.logo) {
       formData.append("logo", newPartner.logo);
-    }
-
-    // Debug: Log FormData contents
-    console.log("FormData contents:");
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
     }
 
     if (modalMode === "add") {

@@ -10,7 +10,7 @@ export default function Hero() {
         {/* Part 1: Short text */}
         <div className="text-center">
           <p className="text-white text-lg font-light">
-            'Geuza' – A Swahili word meaning "to transform"
+            &apos;Geuza&apos; – A Swahili word meaning &quot;to transform&quot;
           </p>
         </div>
 

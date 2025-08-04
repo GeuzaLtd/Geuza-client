@@ -30,7 +30,7 @@ export default function BlogDashboard() {
 
   useEffect(() => {
     dispatch(fetchBlogs({ token: token || "" }) as any);
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const openAddModal = () => {
     setModalMode("add");

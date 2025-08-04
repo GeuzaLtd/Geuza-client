@@ -26,7 +26,6 @@ export default function CartModal({ open, onClose }: CartModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [specialInstructions, setSpecialInstructions] =
     useState<SpecialInstructions>({});
-  const [showInstructions, setShowInstructions] = useState(false);
 
   if (!open) return null;
 

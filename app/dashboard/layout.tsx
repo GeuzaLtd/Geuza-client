@@ -6,13 +6,13 @@ import {
   FaBoxOpen,
   FaShoppingCart,
   FaSearch,
-  FaUserCircle,
   FaSignOutAlt,
 } from "react-icons/fa";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/features/authSlice";
 import { useRouter } from "next/navigation";
+import { RootState } from "@/redux/store";
 
 const menuItems = [
   { name: "Dashboard", icon: <FaTachometerAlt />, href: "/dashboard" },
@@ -28,12 +28,7 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const dispatch = useDispatch();
   const router = useRouter();
-  // Dummy profile data
-  const profile = {
-    name: "Admin User",
-    role: "ADMIN",
-    avatar: "/images/1.webp",
-  };
+  const { user } = useSelector((state: RootState) => state.auth);
   // Determine current page title
   const currentPage =
     menuItems.find((item) => pathname.startsWith(item.href))?.name ||
@@ -120,16 +115,16 @@ export default function DashboardLayout({
           <div className="flex items-center gap-3">
             <div className="text-right">
               <div className="font-semibold text-black leading-tight">
-                {profile.name}
+                {user?.fullName}
               </div>
               <div className="text-xs text-[#AFAFAF] font-medium uppercase">
-                {profile.role}
+                {user?.role}
               </div>
             </div>
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#009900] flex items-center justify-center bg-white">
               <Image
-                src={profile.avatar}
-                alt={profile.name}
+                src="/images/1.webp"
+                alt={user?.fullName || "User"}
                 width={48}
                 height={48}
                 className="object-cover w-full h-full"

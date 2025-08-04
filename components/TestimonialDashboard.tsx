@@ -34,7 +34,7 @@ export default function TestimonialDashboard() {
 
   useEffect(() => {
     dispatch(fetchTestimonials({ token: token || "" }) as any);
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const openAddModal = () => {
     setModalMode("add");

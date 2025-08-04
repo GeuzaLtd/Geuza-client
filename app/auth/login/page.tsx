@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCredentials } from "../../../redux/features/authSlice";
 import { useRouter } from "next/navigation";
 import { loginUser } from "../../../services/authService";
 import { RootState } from "../../../redux/store";
@@ -12,9 +11,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loading, error, user } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { loading, error } = useSelector((state: RootState) => state.auth);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,7 +56,7 @@ export default function LoginPage() {
         </button>
       </form>
       <div className="mt-6 text-center text-sm text-[#3C4049]">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <Link
           href="/auth/register"
           className="text-[#009900] underline font-medium"
