@@ -12,41 +12,41 @@ import { AiFillInstagram } from "react-icons/ai";
 
 const team = [
   {
-    image: "/images/delete.png",
-    name: "Alice Kimani",
-    position: "Founder & CEO",
+    image: "/images/nicole.jpeg",
+    name: "Aline Nicole UWAMARIYA",
+    position: "Co-Founder & CEO",
     linkedin: "#",
     twitter: "#",
     instagram: "#",
   },
   {
-    image: "/images/delete.png",
-    name: "Brian Otieno",
-    position: "Lead Engineer",
+    image: "/images/abdul.jpeg",
+    name: "Abdulrahman NIYONIZEYE",
+    position: "Co-Founder & Business Growth Lead",
     linkedin: "#",
     twitter: "#",
     instagram: "#",
   },
   {
-    image: "/images/delete.png",
-    name: "Cynthia Mwangi",
-    position: "Product Designer",
+    image: "/images/noelle.jpeg",
+    name: "Marie Noëlle Kanyamuneza",
+    position: "Technical Manager",
     linkedin: "#",
     twitter: "#",
     instagram: "#",
   },
   {
-    image: "/images/delete.png",
-    name: "David Njoroge",
+    image: "/images/ariane.jpeg",
+    name: "Ariane MUKESHIMANA",
     position: "Operations Manager",
     linkedin: "#",
     twitter: "#",
     instagram: "#",
   },
   {
-    image: "/images/delete.png",
-    name: "Esther Wambui",
-    position: "Community Lead",
+    image: "/images/toussaint.jpg",
+    name: "Toussaint MANZI",
+    position: "Software Engineer",
     linkedin: "#",
     twitter: "#",
     instagram: "#",
@@ -87,7 +87,7 @@ export default function Team() {
                       src={person.image}
                       alt={person.name}
                       fill
-                      className="object-cover rounded-[12px]"
+                      className="object-cover object-[center_30%] rounded-[12px]"
                     />
                   </div>
                   <span className="text-black font-semibold text-base mb-1">

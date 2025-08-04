@@ -27,7 +27,7 @@ export default function CompanyPage() {
             {/* Left part - Large text */}
             <div className="flex-1">
               <h2 className="text-4xl font-bold text-[#348E38] leading-tight">
-                Turning discarded E-waste into assistive products.
+                Bringing sustainability and technology into assistive devices.
               </h2>
             </div>
 
@@ -38,10 +38,10 @@ export default function CompanyPage() {
               </h3>
               {/* Paragraph */}
               <p className="text-[#3C4049] text-sm leading-relaxed">
-                At GEUZA, we believe in a circular economy that empowers
-                communities. By transforming e-waste into crutches, walkers, and
-                prosthetics, we deliver sustainable, affordable, and impactful
-                solutions for people with disabilities.
+                GEUZA is a Rwandan-based social enterprise committed to
+                innovation, inclusion, and sustainability. Our team combines
+                expertise in biomedical engineering, recycling, and tech to
+                create assistive devices from electronic waste.
               </p>
             </div>
           </div>
@@ -73,12 +73,12 @@ export default function CompanyPage() {
                   Mission
                 </h3>
                 <p className="text-[#3C4049] text-sm leading-relaxed">
-                  To create a sustainable future by transforming electronic
-                  waste into high-quality, affordable assistive devices. We are
-                  dedicated to reducing environmental impact while improving
-                  accessibility for people with disabilities, ensuring that
-                  every individual has access to the tools they need to live a
-                  full and independent life.
+                  At Geuza, our mission is to transform lives by designing
+                  smart, affordable mobility devices that combines sustainable
+                  materials with advanced technology. We are committed to making
+                  mobility accessible, safe, and empowering ensuring every
+                  product we create delivers purpose-driven impact for those who
+                  need it most.
                 </p>
               </div>
 
@@ -88,12 +88,12 @@ export default function CompanyPage() {
                   Vision
                 </h3>
                 <p className="text-[#3C4049] text-sm leading-relaxed">
-                  We envision a world where every individual has access to the
-                  tools they need to live a full and independent life, and where
-                  a circular economy benefits both people and the planet. Our
-                  goal is to be a global leader in inclusive innovation,
-                  fostering communities that embrace sustainability and
-                  accessibility.
+                  At Geuza, we envision an inclusive Africa where innovation,
+                  sustainability, and technology converge to transform mobility.
+                  We are driven by the belief that every individual deserves the
+                  freedom to move with dignity and we are committed to restoring
+                  that independence through every breakthrough assistive device
+                  we design.
                 </p>
               </div>
             </div>

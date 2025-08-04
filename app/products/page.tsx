@@ -81,7 +81,7 @@ export default function ProductsPage() {
           <div className="w-full max-w-7xl mx-auto space-y-16">
             <div className="w-full max-w-7xl mx-auto flex items-start space-x-16 px-10 py-20">
               <div className="flex-1">
-                <h2 className="text-4xl font-bold text-[#348E38] leading-tight">
+                <h2 className="w-3/4 text-4xl font-bold text-[#348E38] leading-tight">
                   E-waste into Assistive Products
                 </h2>
               </div>
@@ -91,17 +91,17 @@ export default function ProductsPage() {
                 <h3 className="text-[#FF7900] font-semibold text-md">Why ?</h3>
                 {/* Paragraph */}
                 <p className="text-[#3C4049] text-sm leading-relaxed">
-                  At GEUZA, we believe in a circular economy that empowers
-                  communities. By transforming e-waste into crutches, walkers,
-                  and prosthetics, we deliver sustainable, affordable, and
-                  impactful solutions for people with disabilities.
+                  At GEUZA, we champion a circular economy by merging technology
+                  and sustainability to transform e-waste into smart, affordable
+                  mobility aids crutches, walkers, and prosthetics that empower
+                  people with disabilities.
                 </p>
               </div>
             </div>
             {/* Products Title */}
             <div className="text-center">
-              <h1 className="text-3xl font-bold text-[#348E38] mb-4">
-                Our Products
+              <h1 className="w-1/5 mx-auto text-4xl font-bold text-[#348E38] mb-4">
+                Some of the devices
               </h1>
             </div>
 
