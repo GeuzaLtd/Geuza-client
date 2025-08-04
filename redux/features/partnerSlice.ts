@@ -33,7 +33,7 @@ export const fetchPartners = createAsyncThunk<
   { state: RootState; rejectValue: string }
 >("partners/fetchAll", async ({ token }, { getState, rejectWithValue }) => {
   try {
-    return await getPartners(token || "");
+    return await getPartners(token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to fetch partners");
   }
@@ -41,12 +41,11 @@ export const fetchPartners = createAsyncThunk<
 
 export const createPartner = createAsyncThunk<
   Partner,
-  FormData,
+  { formData: FormData; token: string },
   { state: RootState; rejectValue: string }
->("partners/create", async (formData, { getState, rejectWithValue }) => {
+>("partners/create", async ({ formData, token }, { rejectWithValue }) => {
   try {
-    const token = getState().auth.token;
-    return await addPartner(formData, token!);
+    return await addPartner(formData, token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to add partner");
   }
@@ -54,28 +53,23 @@ export const createPartner = createAsyncThunk<
 
 export const updatePartner = createAsyncThunk<
   Partner,
-  { id: string; formData: FormData },
+  { id: string; formData: FormData; token: string },
   { state: RootState; rejectValue: string }
->(
-  "partners/update",
-  async ({ id, formData }, { getState, rejectWithValue }) => {
-    try {
-      const token = getState().auth.token;
-      return await updatePartnerApi(id, formData, token!);
-    } catch (err: any) {
-      return rejectWithValue(err.message || "Failed to update partner");
-    }
+>("partners/update", async ({ id, formData, token }, { rejectWithValue }) => {
+  try {
+    return await updatePartnerApi(id, formData, token);
+  } catch (err: any) {
+    return rejectWithValue(err.message || "Failed to update partner");
   }
-);
+});
 
 export const deletePartner = createAsyncThunk<
   string,
-  string,
+  { id: string; token: string },
   { state: RootState; rejectValue: string }
->("partners/delete", async (id, { getState, rejectWithValue }) => {
+>("partners/delete", async ({ id, token }, { rejectWithValue }) => {
   try {
-    const token = getState().auth.token;
-    return await deletePartnerApi(id, token!);
+    return await deletePartnerApi(id, token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to delete partner");
   }

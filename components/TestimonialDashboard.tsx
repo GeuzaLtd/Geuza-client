@@ -14,6 +14,7 @@ import { FaPlus } from "react-icons/fa";
 
 export default function TestimonialDashboard() {
   const dispatch = useDispatch();
+  const { token } = useSelector((state: RootState) => state.auth);
   const { testimonials, loading } = useSelector(
     (state: RootState) => state.testimonials
   );
@@ -32,7 +33,7 @@ export default function TestimonialDashboard() {
   });
 
   useEffect(() => {
-    dispatch(fetchTestimonials() as any);
+    dispatch(fetchTestimonials({ token: token || "" }) as any);
   }, [dispatch]);
 
   const openAddModal = () => {
@@ -61,10 +62,16 @@ export default function TestimonialDashboard() {
     if (newTestimonial.companyImage)
       formData.append("companyImage", newTestimonial.companyImage);
     if (modalMode === "add") {
-      await dispatch(createTestimonial(formData) as any);
+      await dispatch(
+        createTestimonial({ formData, token: token || "" }) as any
+      );
     } else if (modalMode === "edit" && editTestimonial) {
       await dispatch(
-        updateTestimonialThunk({ id: editTestimonial.id, formData }) as any
+        updateTestimonialThunk({
+          id: editTestimonial.id,
+          formData,
+          token: token || "",
+        }) as any
       );
     }
     setShowModal(false);
@@ -78,7 +85,12 @@ export default function TestimonialDashboard() {
 
   const handleDeleteTestimonial = async () => {
     if (deleteTestimonialId) {
-      await dispatch(deleteTestimonialThunk(deleteTestimonialId) as any);
+      await dispatch(
+        deleteTestimonialThunk({
+          id: deleteTestimonialId,
+          token: token || "",
+        }) as any
+      );
       setDeleteTestimonialId(null);
     }
   };

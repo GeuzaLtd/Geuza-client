@@ -70,19 +70,20 @@ export default function Footer() {
           </div>
           <div className="flex items-center space-x-2">
             <Phone size={16} className="text-[#FF7900]" />
-            <span className="text-white text-sm">+1 (555) 123-4567</span>
+            <span className="text-white text-sm">+250-796-084-144</span>
           </div>
           <div className="flex items-center space-x-2">
             <MapPin size={16} className="text-[#FF7900]" />
-            <span className="text-white text-sm">
-              123 Business St, City, Country
-            </span>
+            <span className="text-white text-sm">Special Economic Zone</span>
           </div>
           {/* </div> */}
 
           {/* Copyright */}
           <div className="text-white text-sm">
-            © Geuza Ltd. All rights reserved.
+            <span className="text-white text-sm font-semibold">
+              © Geuza Ltd
+            </span>{" "}
+            . All rights reserved.
           </div>
         </div>
       </div>

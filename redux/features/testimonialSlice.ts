@@ -29,11 +29,11 @@ const initialState: TestimonialState = {
 
 export const fetchTestimonials = createAsyncThunk<
   Testimonial[],
-  void,
+  { token: string },
   { rejectValue: string }
->("testimonials/fetchAll", async (_, { rejectWithValue }) => {
+>("testimonials/fetchAll", async ({ token }, { rejectWithValue }) => {
   try {
-    return await getTestimonials();
+    return await getTestimonials(token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to fetch testimonials");
   }
@@ -41,11 +41,11 @@ export const fetchTestimonials = createAsyncThunk<
 
 export const createTestimonial = createAsyncThunk<
   Testimonial,
-  FormData,
+  { formData: FormData; token: string },
   { rejectValue: string }
->("testimonials/create", async (formData, { rejectWithValue }) => {
+>("testimonials/create", async ({ formData, token }, { rejectWithValue }) => {
   try {
-    return await addTestimonial(formData);
+    return await addTestimonial(formData, token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to add testimonial");
   }
@@ -53,23 +53,26 @@ export const createTestimonial = createAsyncThunk<
 
 export const updateTestimonialThunk = createAsyncThunk<
   Testimonial,
-  { id: string; formData: FormData },
+  { id: string; formData: FormData; token: string },
   { rejectValue: string }
->("testimonials/update", async ({ id, formData }, { rejectWithValue }) => {
-  try {
-    return await updateTestimonial(id, formData);
-  } catch (err: any) {
-    return rejectWithValue(err.message || "Failed to update testimonial");
+>(
+  "testimonials/update",
+  async ({ id, formData, token }, { rejectWithValue }) => {
+    try {
+      return await updateTestimonial(id, formData, token);
+    } catch (err: any) {
+      return rejectWithValue(err.message || "Failed to update testimonial");
+    }
   }
-});
+);
 
 export const deleteTestimonialThunk = createAsyncThunk<
   string,
-  string,
+  { id: string; token: string },
   { rejectValue: string }
->("testimonials/delete", async (id, { rejectWithValue }) => {
+>("testimonials/delete", async ({ id, token }, { rejectWithValue }) => {
   try {
-    return await deleteTestimonial(id);
+    return await deleteTestimonial(id, token);
   } catch (err: any) {
     return rejectWithValue(err.message || "Failed to delete testimonial");
   }

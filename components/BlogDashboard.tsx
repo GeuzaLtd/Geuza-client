@@ -14,6 +14,7 @@ import { FaPlus } from "react-icons/fa";
 
 export default function BlogDashboard() {
   const dispatch = useDispatch();
+  const { token } = useSelector((state: RootState) => state.auth);
   const { blogs, loading } = useSelector((state: RootState) => state.blogs);
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState<"add" | "edit">("add");
@@ -28,7 +29,7 @@ export default function BlogDashboard() {
   });
 
   useEffect(() => {
-    dispatch(fetchBlogs() as any);
+    dispatch(fetchBlogs({ token: token || "" }) as any);
   }, [dispatch]);
 
   const openAddModal = () => {
@@ -67,9 +68,15 @@ export default function BlogDashboard() {
     if (newBlog.thumbnailImage)
       formData.append("thumbnailImage", newBlog.thumbnailImage);
     if (modalMode === "add") {
-      await dispatch(createBlog(formData) as any);
+      await dispatch(createBlog({ formData, token: token || "" }) as any);
     } else if (modalMode === "edit" && editBlog) {
-      await dispatch(updateBlogThunk({ id: editBlog.id, formData }) as any);
+      await dispatch(
+        updateBlogThunk({
+          id: editBlog.id,
+          formData,
+          token: token || "",
+        }) as any
+      );
     }
     setShowModal(false);
     setEditBlog(null);
@@ -88,7 +95,9 @@ export default function BlogDashboard() {
 
   const handleDeleteBlog = async () => {
     if (deleteBlogId) {
-      await dispatch(deleteBlogThunk(deleteBlogId) as any);
+      await dispatch(
+        deleteBlogThunk({ id: deleteBlogId, token: token || "" }) as any
+      );
       setDeleteBlogId(null);
     }
   };

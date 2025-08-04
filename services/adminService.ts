@@ -3,6 +3,7 @@ import axiosInstance from "@/utils/axios";
 // ---------------------------------
 // Partners
 // ---------------------------------
+// export const getPartners = async (token: string) => {
 export const getPartners = async (token: string) => {
   const res = await axiosInstance.get("/partners/", {
     headers: { Authorization: `Bearer ${token}` },
@@ -10,6 +11,7 @@ export const getPartners = async (token: string) => {
   return res.data.data.partners;
 };
 
+// export const addPartner = async (formData: FormData, token: string) => {
 export const addPartner = async (formData: FormData, token: string) => {
   const res = await axiosInstance.post("/partners/", formData, {
     headers: {
@@ -34,6 +36,7 @@ export const updatePartner = async (
   return res.data.data.partner;
 };
 
+// export const deletePartner = async (id: string, token: string) => {
 export const deletePartner = async (id: string, token: string) => {
   await axiosInstance.delete(`/partners/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -44,6 +47,7 @@ export const deletePartner = async (id: string, token: string) => {
 // ---------------------------------
 // Blogs
 // ---------------------------------
+// export const getBlogs = async (token: string) => {
 export const getBlogs = async (token: string) => {
   const res = await axiosInstance.get("/blogs/", {
     headers: { Authorization: `Bearer ${token}` },
@@ -51,7 +55,9 @@ export const getBlogs = async (token: string) => {
   return res.data.data.blogs;
 };
 
+// export const addBlog = async (formData: FormData, token: string) => {
 export const addBlog = async (formData: FormData, token: string) => {
+  console.log("Hiiii", formData);
   const res = await axiosInstance.post("/blogs/", formData, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -75,6 +81,7 @@ export const updateBlog = async (
   return res.data.data.blog;
 };
 
+// export const deleteBlog = async (id: string, token: string) => {
 export const deleteBlog = async (id: string, token: string) => {
   await axiosInstance.delete(`/blogs/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -85,6 +92,7 @@ export const deleteBlog = async (id: string, token: string) => {
 // ---------------------------------
 // Testimonials
 // ---------------------------------
+// export const getTestimonials = async (token: string) => {
 export const getTestimonials = async (token: string) => {
   const res = await axiosInstance.get("/testimonials/", {
     headers: { Authorization: `Bearer ${token}` },
@@ -92,6 +100,7 @@ export const getTestimonials = async (token: string) => {
   return res.data.data.testimonials;
 };
 
+// export const addTestimonial = async (formData: FormData, token: string) => {
 export const addTestimonial = async (formData: FormData, token: string) => {
   const res = await axiosInstance.post("/testimonials/", formData, {
     headers: {
@@ -116,7 +125,9 @@ export const updateTestimonial = async (
   return res.data.data.testimonial;
 };
 
+// export const deleteTestimonial = async (id: string, token: string) => {
 export const deleteTestimonial = async (id: string, token: string) => {
+  console.log("Hiiii", token);
   await axiosInstance.delete(`/testimonials/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -126,6 +137,7 @@ export const deleteTestimonial = async (id: string, token: string) => {
 // ---------------------------------
 // Products
 // ---------------------------------
+// export const getProducts = async (token: string) => {
 export const getProducts = async (token: string) => {
   const res = await axiosInstance.get("/products/", {
     headers: { Authorization: `Bearer ${token}` },
@@ -133,6 +145,7 @@ export const getProducts = async (token: string) => {
   return res.data.data.products;
 };
 
+// export const addProduct = async (formData: FormData, token: string) => {
 export const addProduct = async (formData: FormData, token: string) => {
   const res = await axiosInstance.post("/products/", formData, {
     headers: {
@@ -157,6 +170,7 @@ export const updateProduct = async (
   return res.data.data.product;
 };
 
+// export const deleteProduct = async (id: string, token: string) => {
 export const deleteProduct = async (id: string, token: string) => {
   await axiosInstance.delete(`/products/${id}`, {
     headers: { Authorization: `Bearer ${token}` },

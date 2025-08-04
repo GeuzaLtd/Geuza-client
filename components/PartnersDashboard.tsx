@@ -14,7 +14,7 @@ import { FaPlus } from "react-icons/fa";
 
 export default function PartnersDashboard() {
   const dispatch = useDispatch();
-  const token = useSelector((state: RootState) => state.auth.token);
+  const { token } = useSelector((state: RootState) => state.auth);
   const { partners, loading } = useSelector(
     (state: RootState) => state.partners
   );
@@ -29,7 +29,7 @@ export default function PartnersDashboard() {
 
   useEffect(() => {
     dispatch(fetchPartners({ token: token || "" }) as any);
-  }, [dispatch, token]);
+  }, [dispatch]);
 
   const openAddModal = () => {
     setModalMode("add");
@@ -47,9 +47,23 @@ export default function PartnersDashboard() {
   const handleAddOrEditPartner = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newPartner.name && modalMode === "add") return;
+    if (!newPartner.logo && modalMode === "add") {
+      alert("Please select a logo image");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", newPartner.name);
-    if (newPartner.logo) formData.append("logo", newPartner.logo);
+    if (newPartner.logo) {
+      formData.append("logo", newPartner.logo);
+    }
+
+    // Debug: Log FormData contents
+    console.log("FormData contents:");
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
     if (modalMode === "add") {
       await dispatch(createPartner({ formData, token: token || "" }) as any);
     } else if (modalMode === "edit" && editPartner) {
@@ -158,6 +172,11 @@ export default function PartnersDashboard() {
               className="border border-gray-200 rounded-lg px-4 py-2"
               required={modalMode === "add"}
             />
+            {modalMode === "add" && !newPartner.logo && (
+              <p className="text-red-500 text-sm">
+                Logo is required for new partners
+              </p>
+            )}
             <div className="flex gap-4 mt-2">
               <button
                 type="submit"
