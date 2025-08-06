@@ -10,7 +10,7 @@ export default function Banner() {
             <span className="text-[#348E38] font-bold text-sm">G</span>
           </div>
           <span className="text-white font-normal text-sm">
-            Welcome to Geuza - Transform Your Experience
+            Welcome to Geuza - Transform Your Experiences
           </span>
         </div>
 
