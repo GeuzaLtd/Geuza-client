@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import { fetchBlogs } from "@/redux/features/blogSlice";
 import ThumbnailImage from "@/components/ThumbnailImage";
 
@@ -17,11 +17,11 @@ const truncateText = (text: string, maxLength: number) => {
 };
 
 export default function BlogsPage() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const token = useSelector((state: RootState) => state.auth.token);
   const { blogs } = useSelector((state: RootState) => state.blogs);
   useEffect(() => {
-    dispatch(fetchBlogs({ token: token || "" }) as any);
+    dispatch(fetchBlogs({ token: token || "" }));
   }, [dispatch, token]);
   return (
     <>

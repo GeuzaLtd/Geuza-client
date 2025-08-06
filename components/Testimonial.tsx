@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTestimonials } from "@/redux/features/testimonialSlice";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import { useEffect } from "react";
 interface Testimonial {
   id: string;
@@ -17,13 +17,14 @@ interface Testimonial {
 }
 
 export default function Testimonial() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const { token } = useSelector((state: RootState) => state.auth);
   const { testimonials } = useSelector(
     (state: RootState) => state.testimonials
   );
   useEffect(() => {
-    dispatch(fetchTestimonials() as any);
-  }, [dispatch]);
+    dispatch(fetchTestimonials({ token: token || "" }));
+  }, [dispatch, token]);
   return (
     <section className="w-full px-20 py-20 bg-white">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center space-y-8">

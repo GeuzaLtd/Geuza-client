@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPartners } from "@/redux/features/partnerSlice";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 const PartnersDashboard = dynamic(
@@ -55,13 +55,13 @@ const tabs = [
 ];
 
 export default function DashboardPage() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const token = useSelector((state: RootState) => state.auth.token);
   const [selectedTab, setSelectedTab] = useState("partners");
 
   useEffect(() => {
     if (selectedTab === "partners") {
-      dispatch(fetchPartners({ token: token || "" }) as any);
+      dispatch(fetchPartners({ token: token || "" }));
     }
   }, [dispatch, selectedTab, token]);
 

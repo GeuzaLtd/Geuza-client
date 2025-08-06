@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/redux/features/productSlice";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import { useEffect } from "react";
 
 // const products = [
@@ -56,10 +56,10 @@ import { useEffect } from "react";
 // ];
 
 export default function ProductsPage() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state.products);
   useEffect(() => {
-    dispatch(fetchProducts() as any);
+    dispatch(fetchProducts());
   }, [dispatch]);
   return (
     <>

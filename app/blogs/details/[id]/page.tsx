@@ -4,10 +4,9 @@ import Link from "next/link";
 import Banner from "@/components/Banner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "@/redux/store";
 import { fetchBlogs } from "@/redux/features/blogSlice";
 
 // Truncate function to limit content length
@@ -16,19 +15,46 @@ const truncateText = (text: string, maxLength: number) => {
   return text.slice(0, maxLength) + "...";
 };
 interface BlogDetailsPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
-  const dispatch = useDispatch();
+  const [blogId, setBlogId] = useState<string>("");
+  const dispatch = useDispatch<AppDispatch>();
   const token = useSelector((state: RootState) => state.auth.token);
   const { blogs } = useSelector((state: RootState) => state.blogs);
+
   useEffect(() => {
-    dispatch(fetchBlogs({ token: token || "" }) as any);
+    const getParams = async () => {
+      const { id } = await params;
+      setBlogId(id);
+    };
+    getParams();
+  }, [params]);
+
+  useEffect(() => {
+    dispatch(fetchBlogs({ token: token || "" }));
   }, [dispatch, token]);
-  const blogId = params.id;
+
+  // Don't render until we have the blogId
+  if (!blogId) {
+    return (
+      <>
+        <Banner />
+        <Navbar />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-[#348E38] mb-4">
+              Loading...
+            </h1>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
+  }
   const blog = blogs.find((b) => b.id === blogId);
   console.log("hiii theree", blog);
   const relatedBlogs = blogs.filter((b) => b.id !== blogId).slice(0, 3);

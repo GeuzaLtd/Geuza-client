@@ -8,7 +8,7 @@ import {
   deleteProductThunk,
   Product,
 } from "@/redux/features/productSlice";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import { FaPlus } from "react-icons/fa";
 
@@ -16,7 +16,7 @@ const colorOptions = ["W", "B", "Y", "G", "R"];
 const sizeOptions = ["XS", "S", "M", "L", "XL", "XXL"];
 
 export default function ProductDashboard() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { products, loading } = useSelector(
     (state: RootState) => state.products
   );
@@ -40,7 +40,7 @@ export default function ProductDashboard() {
   const thumbInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    dispatch(fetchProducts() as any);
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   const openAddModal = () => {
@@ -92,12 +92,11 @@ export default function ProductDashboard() {
     newProduct.images.forEach((img) => formData.append("images", img));
     formData.append("description", newProduct.description);
     if (modalMode === "add") {
-      await dispatch(createProduct(formData) as any);
+      await dispatch(createProduct(formData));
     } else if (modalMode === "edit" && editProduct) {
-      await dispatch(
-        updateProductThunk({ id: editProduct.id, formData }) as any
-      );
+      await dispatch(updateProductThunk({ id: editProduct.id, formData }));
     }
+    dispatch(fetchProducts());
     setShowModal(false);
     setEditProduct(null);
     setNewProduct({
@@ -120,7 +119,7 @@ export default function ProductDashboard() {
 
   const handleDeleteProduct = async () => {
     if (deleteProductId) {
-      await dispatch(deleteProductThunk(deleteProductId) as any);
+      await dispatch(deleteProductThunk(deleteProductId));
       setDeleteProductId(null);
     }
   };

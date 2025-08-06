@@ -126,7 +126,7 @@ export default function MyOrdersPage() {
                 <div className="border-t border-gray-100 pt-6">
                   <h3 className="font-semibold text-lg mb-4">Order Summary</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {order.items.map((item: any) => (
+                    {order.items.map((item) => (
                       <div
                         key={item.id}
                         className="flex items-center gap-4 p-3 rounded bg-gray-50"

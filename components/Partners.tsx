@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import { fetchPartners } from "@/redux/features/partnerSlice";
 
 export default function Partners() {
@@ -18,11 +18,11 @@ export default function Partners() {
   //   updatedAt: string;
   // }
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const token = useSelector((state: RootState) => state.auth.token);
   const { partners } = useSelector((state: RootState) => state.partners);
   useEffect(() => {
-    dispatch(fetchPartners({ token: token || "" }) as any);
+    dispatch(fetchPartners({ token: token || "" }));
   }, [dispatch, token]);
   return (
     <section className="w-full px-20 py-10 bg-white">

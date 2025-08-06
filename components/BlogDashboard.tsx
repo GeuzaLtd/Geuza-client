@@ -8,12 +8,12 @@ import {
   deleteBlogThunk,
   Blog,
 } from "@/redux/features/blogSlice";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import { FaPlus } from "react-icons/fa";
 
 export default function BlogDashboard() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { token } = useSelector((state: RootState) => state.auth);
   const { blogs, loading } = useSelector((state: RootState) => state.blogs);
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +29,7 @@ export default function BlogDashboard() {
   });
 
   useEffect(() => {
-    dispatch(fetchBlogs({ token: token || "" }) as any);
+    dispatch(fetchBlogs({ token: token || "" }));
   }, [dispatch, token]);
 
   const openAddModal = () => {
@@ -68,14 +68,14 @@ export default function BlogDashboard() {
     if (newBlog.thumbnailImage)
       formData.append("thumbnailImage", newBlog.thumbnailImage);
     if (modalMode === "add") {
-      await dispatch(createBlog({ formData, token: token || "" }) as any);
+      await dispatch(createBlog({ formData, token: token || "" }));
     } else if (modalMode === "edit" && editBlog) {
       await dispatch(
         updateBlogThunk({
           id: editBlog.id,
           formData,
           token: token || "",
-        }) as any
+        })
       );
     }
     setShowModal(false);
@@ -95,9 +95,7 @@ export default function BlogDashboard() {
 
   const handleDeleteBlog = async () => {
     if (deleteBlogId) {
-      await dispatch(
-        deleteBlogThunk({ id: deleteBlogId, token: token || "" }) as any
-      );
+      await dispatch(deleteBlogThunk({ id: deleteBlogId, token: token || "" }));
       setDeleteBlogId(null);
     }
   };

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "@/redux/features/productSlice";
+import { fetchProducts, Product } from "@/redux/features/productSlice";
 import { RootState, AppDispatch } from "@/redux/store";
 import ShopProductCard from "@/components/ShopProductCard";
 import { Button } from "@/components/ui/button";
@@ -23,7 +23,7 @@ export default function ShopPage() {
   const [cartOpen, setCartOpen] = useState(false);
   const [productModal, setProductModal] = useState<{
     open: boolean;
-    product: any;
+    product: Product | null;
   }>({ open: false, product: null });
 
   useEffect(() => {

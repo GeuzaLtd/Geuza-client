@@ -15,7 +15,7 @@ export default function DashboardOrdersPage() {
     dispatch(fetchOrders({ userType: "ADMIN" }));
   }, [dispatch]);
 
-  const getTotalQuantity = (items: any[]) => {
+  const getTotalQuantity = (items: Array<{ quantity: number }>) => {
     return items.reduce((total, item) => total + item.quantity, 0);
   };
 
