@@ -8,12 +8,12 @@ import {
   deletePartner,
   Partner,
 } from "@/redux/features/partnerSlice";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import { FaPlus } from "react-icons/fa";
 
 export default function PartnersDashboard() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { token } = useSelector((state: RootState) => state.auth);
   const { partners, loading } = useSelector(
     (state: RootState) => state.partners
@@ -28,8 +28,8 @@ export default function PartnersDashboard() {
   });
 
   useEffect(() => {
-    dispatch(fetchPartners({ token: token || "" }) as any);
-  }, [dispatch]);
+    dispatch(fetchPartners({ token: token || "" }));
+  }, [dispatch, token]);
 
   const openAddModal = () => {
     setModalMode("add");
@@ -58,21 +58,15 @@ export default function PartnersDashboard() {
       formData.append("logo", newPartner.logo);
     }
 
-    // Debug: Log FormData contents
-    console.log("FormData contents:");
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
-
     if (modalMode === "add") {
-      await dispatch(createPartner({ formData, token: token || "" }) as any);
+      await dispatch(createPartner({ formData, token: token || "" }));
     } else if (modalMode === "edit" && editPartner) {
       await dispatch(
         updatePartner({
           id: editPartner.id,
           formData,
           token: token || "",
-        }) as any
+        })
       );
     }
     setShowModal(false);
@@ -87,7 +81,7 @@ export default function PartnersDashboard() {
   const handleDeletePartner = async () => {
     if (deletePartnerId) {
       await dispatch(
-        deletePartner({ id: deletePartnerId, token: token || "" }) as any
+        deletePartner({ id: deletePartnerId, token: token || "" })
       );
       setDeletePartnerId(null);
     }

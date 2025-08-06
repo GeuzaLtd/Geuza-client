@@ -11,35 +11,7 @@ import { IoArrowForward } from "react-icons/io5";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/redux/features/productSlice";
-import { RootState } from "@/redux/store";
-
-const devices = [
-  {
-    image: "/images/device-1.png",
-    title: "Eco-Crutch",
-    status: "In stock",
-  },
-  {
-    image: "/images/device-2.png",
-    title: "Walker Pro",
-    status: "Out of stock",
-  },
-  {
-    image: "/images/device-3.png",
-    title: "Smart Prosthetic Arm",
-    status: "In stock",
-  },
-  {
-    image: "/images/device-4.png",
-    title: "Eco-Wheelchair",
-    status: "In stock",
-  },
-  {
-    image: "/images/device-5.png",
-    title: "Assistive Glove",
-    status: "Out of stock",
-  },
-];
+import { RootState, AppDispatch } from "@/redux/store";
 
 const support = [
   {
@@ -60,10 +32,10 @@ const support = [
 ];
 
 export default function Shop() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state.products);
   useEffect(() => {
-    dispatch(fetchProducts() as any);
+    dispatch(fetchProducts());
   }, [dispatch]);
   //   console.log(products);
   return (

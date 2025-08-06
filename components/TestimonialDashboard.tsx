@@ -8,12 +8,12 @@ import {
   deleteTestimonialThunk,
   Testimonial,
 } from "@/redux/features/testimonialSlice";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import { FaPlus } from "react-icons/fa";
 
 export default function TestimonialDashboard() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { token } = useSelector((state: RootState) => state.auth);
   const { testimonials, loading } = useSelector(
     (state: RootState) => state.testimonials
@@ -33,8 +33,8 @@ export default function TestimonialDashboard() {
   });
 
   useEffect(() => {
-    dispatch(fetchTestimonials({ token: token || "" }) as any);
-  }, [dispatch]);
+    dispatch(fetchTestimonials({ token: token || "" }));
+  }, [dispatch, token]);
 
   const openAddModal = () => {
     setModalMode("add");
@@ -62,16 +62,14 @@ export default function TestimonialDashboard() {
     if (newTestimonial.companyImage)
       formData.append("companyImage", newTestimonial.companyImage);
     if (modalMode === "add") {
-      await dispatch(
-        createTestimonial({ formData, token: token || "" }) as any
-      );
+      await dispatch(createTestimonial({ formData, token: token || "" }));
     } else if (modalMode === "edit" && editTestimonial) {
       await dispatch(
         updateTestimonialThunk({
           id: editTestimonial.id,
           formData,
           token: token || "",
-        }) as any
+        })
       );
     }
     setShowModal(false);
@@ -89,7 +87,7 @@ export default function TestimonialDashboard() {
         deleteTestimonialThunk({
           id: deleteTestimonialId,
           token: token || "",
-        }) as any
+        })
       );
       setDeleteTestimonialId(null);
     }

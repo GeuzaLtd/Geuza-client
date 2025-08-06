@@ -26,7 +26,6 @@ export default function CartModal({ open, onClose }: CartModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [specialInstructions, setSpecialInstructions] =
     useState<SpecialInstructions>({});
-  const [showInstructions, setShowInstructions] = useState(false);
 
   if (!open) return null;
 
@@ -48,11 +47,10 @@ export default function CartModal({ open, onClose }: CartModalProps) {
       dispatch(clearCart());
       onClose();
       router.push("/my-orders");
-    } catch (err: any) {
-      toast.error(
-        "Failed to place pre-order: " +
-          (err?.response?.data?.message || err.message)
-      );
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Unknown error occurred";
+      toast.error("Failed to place pre-order: " + errorMessage);
     } finally {
       setIsLoading(false);
     }

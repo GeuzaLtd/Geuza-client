@@ -71,11 +71,10 @@ export default function ProductViewModal({
       toast.success("Pre-order placed successfully!");
       router.push("/my-orders");
       onClose();
-    } catch (err: any) {
-      toast.error(
-        "Failed to place pre-order: " +
-          (err?.response?.data?.message || err.message)
-      );
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Unknown error occurred";
+      toast.error("Failed to place pre-order: " + errorMessage);
     } finally {
       setIsLoading(false);
     }

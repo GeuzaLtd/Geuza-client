@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Recycle, HeartHandshake, TrendingUp } from "lucide-react";
 import Partners from "@/components/Partners";
 import Team from "@/components/Team";
 import Navbar from "@/components/Navbar";
