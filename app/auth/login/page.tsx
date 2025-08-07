@@ -26,11 +26,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <h2 className="text-3xl font-bold text-[#009900] mb-8">
+    <div className="flex flex-col items-center w-full min-h-screen justify-center px-4 py-10 bg-white">
+      <h2 className="text-2xl md:text-3xl font-bold text-[#009900] mb-8">
         Login to Geuza!
       </h2>
-      <form className="w-full flex flex-col space-y-4" onSubmit={handleSubmit}>
+      <form
+        className="w-full max-w-md flex flex-col space-y-4"
+        onSubmit={handleSubmit}
+      >
         <input
           type="email"
           placeholder="Email"
