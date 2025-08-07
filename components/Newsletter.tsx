@@ -2,10 +2,10 @@
 
 export default function Newsletter() {
   return (
-    <section className="w-full flex items-center justify-center p-20">
-      <div className="w-full flex flex-col items-center text-center space-y-6 px-4 py-20 bg-[#009900] rounded-[10px]">
+    <section className="w-full flex items-center justify-center px-4 py-10 md:p-20">
+      <div className="w-full flex flex-col items-center text-center space-y-6 px-4 py-10 md:py-20 bg-[#009900] rounded-[10px]">
         {/* Big white bold text */}
-        <h2 className="text-3xl md:text-6xl font-bold text-white">
+        <h2 className="text-2xl md:text-6xl font-bold text-white">
           Subscribe to Our Newsletter
         </h2>
         {/* Small light paragraph */}
@@ -16,7 +16,7 @@ export default function Newsletter() {
         </p>
         {/* Input + Button */}
         <form className="w-full flex items-center justify-center">
-          <div className="flex w-full max-w-md bg-white rounded-full overflow-hidden shadow-sm p-2">
+          <div className="flex flex-col sm:flex-row w-full max-w-md bg-white rounded-3xl md:rounded-full overflow-hidden shadow-sm p-2 gap-2 sm:gap-0">
             <input
               type="email"
               placeholder="Enter your work email"
@@ -24,7 +24,7 @@ export default function Newsletter() {
             />
             <button
               type="submit"
-              className="bg-[#FF7900] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#e66a00] transition-colors text-sm whitespace-nowrap"
+              className="bg-[#FF7900] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#e66a00] transition-colors text-sm whitespace-nowrap mt-2 sm:mt-0"
             >
               Subscribe
             </button>

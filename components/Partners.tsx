@@ -10,14 +10,6 @@ import { RootState, AppDispatch } from "@/redux/store";
 import { fetchPartners } from "@/redux/features/partnerSlice";
 
 export default function Partners() {
-  // interface Partner {
-  //   id: string;
-  //   name: string;
-  //   logo: string;
-  //   createdAt: string;
-  //   updatedAt: string;
-  // }
-
   const dispatch = useDispatch<AppDispatch>();
   const token = useSelector((state: RootState) => state.auth.token);
   const { partners } = useSelector((state: RootState) => state.partners);
@@ -25,18 +17,22 @@ export default function Partners() {
     dispatch(fetchPartners({ token: token || "" }));
   }, [dispatch, token]);
   return (
-    <section className="w-full px-20 py-10 bg-white">
-      <div className="w-full max-w-7xl mx-auto flex items-center justify-between space-x-8">
+    <section className="w-full px-4 md:px-20 py-8 md:py-10 bg-white">
+      <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between md:space-x-8 space-y-4 md:space-y-0">
         {/* Section Title */}
-        <span className="text-[#3C4049] text-sm font-light whitespace-nowrap">
+        <span className="text-[#3C4049] text-sm font-light whitespace-nowrap mb-2 md:mb-0">
           Trusted and Funded by
         </span>
         {/* Swiper Carousel */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 w-full">
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={32}
-            slidesPerView={3}
+            spaceBetween={16}
+            breakpoints={{
+              0: { slidesPerView: 1.5 },
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
             loop={true}
             autoplay={{ delay: 2500, disableOnInteraction: false }}
             grabCursor
@@ -44,13 +40,13 @@ export default function Partners() {
           >
             {partners.slice(0, 5).map((partner, idx) => (
               <SwiperSlide key={idx}>
-                <div className="flex items-center justify-center h-32 w-full">
+                <div className="flex items-center justify-center h-20 md:h-32 w-full">
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={200}
+                    width={120}
                     height={0}
-                    className="object-contain max-h-16"
+                    className="object-contain max-h-12 md:max-h-16"
                   />
                 </div>
               </SwiperSlide>
