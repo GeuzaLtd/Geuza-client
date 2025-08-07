@@ -1,0 +1,41 @@
+name: Deploy Frontend to DigitalOcean Droplet
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "23.7.0"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build frontend
+        run: yarn build
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.DO_SSH_KEY }}
+
+      - name: Copy project files to Droplet
+        run: |
+          rsync -avz --exclude='.git' --exclude='node_modules' --exclude='.next' --exclude='out' -e "ssh -o StrictHostKeyChecking=no" ./ ${{ secrets.DO_SSH_USER }}@${{ secrets.DO_SSH_HOST }}:~/geuza-frontend/
+
+      - name: Build and run Docker container on Droplet
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.DO_SSH_USER }}@${{ secrets.DO_SSH_HOST }} '
+            docker container prune -f && \
+            cd ~/geuza-frontend && \
+            docker compose down --remove-orphans && \
+            docker compose up -d --build frontend
+          '
