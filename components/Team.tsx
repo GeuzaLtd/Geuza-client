@@ -27,7 +27,7 @@ const team = [
     instagram: "#",
   },
   {
-    image: "/images/noelle.jpeg",
+    image: "/images/noel.jpeg",
     name: "Marie Noëlle Kanyamuneza",
     position: "Technical Manager",
     linkedin: "#",
