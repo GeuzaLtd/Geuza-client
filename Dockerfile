@@ -8,6 +8,7 @@ RUN yarn install
 FROM node:23.7.0-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=builder /app/next.config.ts ./
 COPY . .
 RUN yarn  build
 
