@@ -22,6 +22,7 @@ export default function Testimonial() {
   const { testimonials } = useSelector(
     (state: RootState) => state.testimonials
   );
+  const testimonialsToDisplay = [...testimonials, ...testimonials];
   useEffect(() => {
     dispatch(fetchTestimonials({ token: token || "" }));
   }, [dispatch, token]);
@@ -38,23 +39,36 @@ export default function Testimonial() {
           </h2>
         </div>
 
+        {/* Debug Info
+        <div className="text-sm text-gray-500 mb-4">
+          Loaded {testimonials.length} testimonials
+        </div> */}
+
         {/* Swiper Carousel */}
         <div className="w-full pt-10 pb-8">
           <Swiper
             modules={[Autoplay]}
             spaceBetween={32}
-            slidesPerView={3}
-            loop={true}
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            loop={testimonialsToDisplay.length > 3}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
             grabCursor
             centeredSlides
             style={{ paddingBottom: 40 }}
           >
-            {testimonials.map((testimonial, idx) => (
+            {testimonialsToDisplay.map((testimonial, idx) => (
               <SwiperSlide key={idx}>
                 {({ isActive }) => (
                   <div
-                    className={`border border-[#EBECEF] rounded-xl bg-white flex flex-col items-start justify-between w-[376px] h-[159.59px] mx-auto p-6 transition-all duration-300
+                    className={`h-full border border-[#EBECEF] rounded-xl bg-white flex flex-col items-start justify-between w-[376px] mx-auto p-6 transition-all duration-300
                       ${isActive ? "translate-y-8 z-10" : "translate-y-0 z-0"}
                     `}
                   >

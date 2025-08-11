@@ -36,6 +36,11 @@ export default function TestimonialDashboard() {
     dispatch(fetchTestimonials({ token: token || "" }));
   }, [dispatch, token]);
 
+  // Debug: Log testimonials count
+  useEffect(() => {
+    console.log("Testimonials loaded:", testimonials.length, testimonials);
+  }, [testimonials]);
+
   const openAddModal = () => {
     setModalMode("add");
     setNewTestimonial({ companyName: "", testimonial: "", companyImage: null });
@@ -95,7 +100,7 @@ export default function TestimonialDashboard() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white rounded-xl p-6">
-      {testimonials.slice(0, 3).map((item) => (
+      {testimonials.map((item) => (
         <div key={item.id} className="rounded-xl flex flex-col items-start">
           <div className="relative w-full h-36 mb-4 flex items-center justify-center shadow rounded-lg">
             <Image
