@@ -11,7 +11,8 @@ export default function ShopProductCard({
   product,
   onClick,
 }: ShopProductCardProps) {
-  const outOfStock = product.minimum <= 0;
+  const outOfStock =
+    product.minimum <= 0 || product.name.includes("coming soon");
   return (
     <div
       className={`bg-[#F1F2F4] flex flex-col justify-between h-[380px] w-[300px] mx-auto shadow-sm p-6 relative transition-all ${
@@ -34,10 +35,10 @@ export default function ShopProductCard({
           </span>
           <span
             className={`text-xs mt-1 ${
-              outOfStock ? "text-red-500" : "text-[#348E38]"
+              outOfStock ? "text-[#A259FF]" : "text-[#348E38]"
             }`}
           >
-            {outOfStock ? "Out of Stock" : "In Stock"}
+            {product.name.includes("Coming soon") ? "Coming soon" : "In Stock"}
           </span>
         </div>
         <button
