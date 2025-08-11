@@ -76,7 +76,7 @@ export default function Impact() {
       </div>
       <div className="w-full h-screen relative">
         <Image
-          src="/images/4.png"
+          src="/images/team.jpeg"
           alt="Impact Image"
           fill
           className="object-cover"

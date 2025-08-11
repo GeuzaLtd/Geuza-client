@@ -21,6 +21,10 @@ export default function Partners() {
   const dispatch = useDispatch<AppDispatch>();
   const token = useSelector((state: RootState) => state.auth.token);
   const { partners } = useSelector((state: RootState) => state.partners);
+
+  // Duplicate partners for better sliding experience
+  const partnersToDisplay = [...partners, ...partners];
+
   useEffect(() => {
     dispatch(fetchPartners({ token: token || "" }));
   }, [dispatch, token]);
@@ -36,13 +40,21 @@ export default function Partners() {
           <Swiper
             modules={[Autoplay]}
             spaceBetween={32}
-            slidesPerView={3}
-            loop={true}
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            loop={partnersToDisplay.length > 3}
             autoplay={{ delay: 2500, disableOnInteraction: false }}
             grabCursor
             centeredSlides={false}
           >
-            {partners.slice(0, 5).map((partner, idx) => (
+            {partnersToDisplay.map((partner, idx) => (
               <SwiperSlide key={idx}>
                 <div className="flex items-center justify-center h-32 w-full">
                   <Image
