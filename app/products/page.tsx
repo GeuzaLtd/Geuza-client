@@ -10,51 +10,6 @@ import { fetchProducts } from "@/redux/features/productSlice";
 import { RootState, AppDispatch } from "@/redux/store";
 import { useEffect } from "react";
 
-// const products = [
-//   {
-//     id: 1,
-//     image: "/images/device-1.png",
-//     name: "Eco-Crutch",
-//     description:
-//       "A sustainable crutch made from recycled electronic waste, providing comfort and stability while reducing environmental impact.",
-//   },
-//   {
-//     id: 2,
-//     image: "/images/device-2.png",
-//     name: "Walker Pro",
-//     description:
-//       "Innovative walker designed with recycled materials, offering enhanced mobility and support for users with walking difficulties.",
-//   },
-//   {
-//     id: 3,
-//     image: "/images/device-3.png",
-//     name: "Smart Prosthetic Arm",
-//     description:
-//       "Advanced prosthetic arm crafted from e-waste materials, featuring modern design and improved functionality for amputees.",
-//   },
-//   {
-//     id: 4,
-//     image: "/images/device-4.png",
-//     name: "Eco-Wheelchair",
-//     description:
-//       "Sustainable wheelchair built with recycled components, ensuring accessibility while promoting environmental responsibility.",
-//   },
-//   {
-//     id: 5,
-//     image: "/images/device-5.png",
-//     name: "Assistive Glove",
-//     description:
-//       "Smart glove designed to assist with daily tasks, made from repurposed electronic materials for enhanced grip and dexterity.",
-//   },
-//   {
-//     id: 6,
-//     image: "/images/device-6.png",
-//     name: "Mobility Scooter",
-//     description:
-//       "Electric mobility scooter constructed with recycled parts, providing independence and freedom of movement for users.",
-//   },
-// ];
-
 export default function ProductsPage() {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: RootState) => state.products);
