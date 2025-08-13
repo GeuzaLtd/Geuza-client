@@ -42,6 +42,7 @@ export default function MyOrdersPage() {
         src="/images/company-2.jpeg"
         alt="Blogs Thumbnail"
         className="w-full h-[350px] relative"
+        imageClassName="object-[center_35%]"
       />
       <div className="max-w-4xl mx-auto py-12 px-4">
         <div className="flex items-center gap-4 my-12">

@@ -18,6 +18,7 @@ export default function CompanyPage() {
           src="/images/company-2.jpeg"
           alt="Company Thumbnail"
           className="w-full h-[350px] relative"
+          imageClassName="object-[center_35%]"
         />
 
         {/* Content Section */}

@@ -69,9 +69,10 @@ export default function ProductsPage() {
       <main className="min-h-screen">
         {/* Thumbnail Image */}
         <ThumbnailImage
-          src="/images/company-2.jpeg"
+          src="/images/devices.jpeg"
           alt="Company Thumbnail"
           className="w-full h-[350px] relative"
+          imageClassName="object-[center_40%]"
         />
 
         {/* Content Section */}

@@ -30,9 +30,10 @@ export default function BlogsPage() {
       <main className="min-h-screen">
         {/* Thumbnail Image */}
         <ThumbnailImage
-          src="/images/company-2.jpeg"
+          src="/images/blog-2.jpg"
           alt="Blogs Thumbnail"
           className="w-full h-[350px] relative"
+          imageClassName="object-[center_25%]"
         />
 
         {/* Content Section */}
