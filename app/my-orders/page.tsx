@@ -39,7 +39,7 @@ export default function MyOrdersPage() {
       <Banner />
       <Navbar />
       <ThumbnailImage
-        src="/images/company.jpg"
+        src="/images/company-2.jpeg"
         alt="Blogs Thumbnail"
         className="w-full h-[350px] relative"
       />

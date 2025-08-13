@@ -15,7 +15,7 @@ export default function CompanyPage() {
       <main className="min-h-screen">
         {/* Thumbnail Image */}
         <ThumbnailImage
-          src="/images/company.jpg"
+          src="/images/company-2.jpeg"
           alt="Company Thumbnail"
           className="w-full h-[350px] relative"
         />
@@ -56,10 +56,10 @@ export default function CompanyPage() {
             <div className="w-full flex justify-center">
               <div className="w-full max-w-4xl h-[400px] relative">
                 <Image
-                  src="/images/company.jpg"
+                  src="/images/company-2.jpeg"
                   alt="Company"
                   fill
-                  className="object-cover object-[center_10%] rounded-xl"
+                  className="object-cover object-[center_35%] rounded-xl"
                 />
               </div>
             </div>

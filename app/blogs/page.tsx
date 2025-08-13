@@ -30,7 +30,7 @@ export default function BlogsPage() {
       <main className="min-h-screen">
         {/* Thumbnail Image */}
         <ThumbnailImage
-          src="/images/company.jpg"
+          src="/images/company-2.jpeg"
           alt="Blogs Thumbnail"
           className="w-full h-[350px] relative"
         />
@@ -72,7 +72,7 @@ export default function BlogsPage() {
                       src={blog.thumbnailImage || ""}
                       alt={blog.title}
                       fill
-                      className="object-cover rounded-lg"
+                      className="object-cover rounded-lg  object-[center_25%]"
                     />
                   </div>
 

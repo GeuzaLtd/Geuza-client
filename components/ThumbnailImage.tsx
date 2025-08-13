@@ -17,7 +17,7 @@ export default function ThumbnailImage({
         src={src}
         alt={alt}
         fill
-        className="object-cover object-[center_10%]"
+        className="object-cover object-[center_35%]"
       />
     </div>
   );

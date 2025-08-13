@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/redux/features/productSlice";
 import { RootState, AppDispatch } from "@/redux/store";
 import { useEffect } from "react";
+import ThumbnailImage from "@/components/ThumbnailImage";
 
 // const products = [
 //   {
@@ -67,14 +68,11 @@ export default function ProductsPage() {
       <Navbar />
       <main className="min-h-screen">
         {/* Thumbnail Image */}
-        <div className="w-full h-[500px] relative">
-          <Image
-            src="/images/company.jpg"
-            alt="Products Thumbnail"
-            fill
-            className="object-cover object-[center_10%]"
-          />
-        </div>
+        <ThumbnailImage
+          src="/images/company-2.jpeg"
+          alt="Company Thumbnail"
+          className="w-full h-[350px] relative"
+        />
 
         {/* Content Section */}
         <div className="w-full px-20 py-20 bg-white">

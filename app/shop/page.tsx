@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, Product } from "@/redux/features/productSlice";
 import { RootState, AppDispatch } from "@/redux/store";
 import ShopProductCard from "@/components/ShopProductCard";
-import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Banner from "@/components/Banner";
@@ -48,7 +47,7 @@ export default function ShopPage() {
                 Assistive Devices
               </h2>
               <form className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-full max-w-md justify-end">
-                <label className="text-sm text-gray-600">
+                {/* <label className="text-sm text-gray-600">
                   Price range (RWF)
                 </label>
                 <input
@@ -63,7 +62,7 @@ export default function ShopPage() {
                 />
                 <Button type="submit" className="px-6">
                   Filter
-                </Button>
+                </Button> */}
                 <button
                   type="button"
                   className="relative ml-2 p-2 rounded-full hover:bg-gray-100 transition-colors"
