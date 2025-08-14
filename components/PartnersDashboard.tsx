@@ -89,42 +89,50 @@ export default function PartnersDashboard() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white rounded-xl p-6">
-      {partners.slice(0, 3).map((item) => (
-        <div key={item.id} className="rounded-xl flex flex-col items-start">
-          <div className="relative w-full h-36 mb-4 flex items-center justify-center shadow">
-            <Image
-              src={item.logo}
-              alt={item.name}
-              fill
-              className="object-cover rounded-lg"
-            />
-          </div>
-          <div className="flex justify-between w-full">
-            <div className="flex flex-col items-start">
-              <div className="font-semibold text-sm text-[#67748E] mb-1">
-                Partners
+      {/* Scrollable Partners Container */}
+      <div className="col-span-3 overflow-x-auto">
+        <div className="flex gap-6 min-w-max">
+          {partners.map((item) => (
+            <div
+              key={item.id}
+              className="rounded-xl flex flex-col items-start min-w-[280px]"
+            >
+              <div className="relative w-full h-36 mb-4 flex items-center justify-center shadow">
+                <Image
+                  src={item.logo}
+                  alt={item.name}
+                  fill
+                  className="object-cover rounded-lg"
+                />
               </div>
-              <div className="font-bold text-lg text-black mb-1">
-                {item.name}
+              <div className="flex justify-between w-full">
+                <div className="flex flex-col items-start">
+                  <div className="font-semibold text-sm text-[#67748E] mb-1">
+                    Partners
+                  </div>
+                  <div className="font-bold text-lg text-black mb-1">
+                    {item.name}
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <button
+                    className="text-[#009900] flex items-center text-sm mb-1"
+                    onClick={() => openEditModal(item)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="text-red-500 flex items-center text-sm mb-1"
+                    onClick={() => openDeleteModal(item.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="flex flex-col">
-              <button
-                className="text-[#009900] flex items-center text-sm mb-1"
-                onClick={() => openEditModal(item)}
-              >
-                Edit
-              </button>
-              <button
-                className="text-red-500 flex items-center text-sm mb-1"
-                onClick={() => openDeleteModal(item.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
-      ))}
+      </div>
       {/* Add New Card */}
       <div
         className="bg-white rounded-xl p-6 shadow flex flex-col items-center justify-center cursor-pointer hover:bg-[#F5F5F5]"
