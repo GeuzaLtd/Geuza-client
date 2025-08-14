@@ -24,25 +24,25 @@ export default function Footer() {
           {/* Navigation items */}
           <div className="flex items-center space-x-6">
             <Link
-              href="#"
+              href="/company"
               className="text-white hover:text-gray-200 transition-colors font-normal text-sm"
             >
               Company
             </Link>
             <Link
-              href="#"
+              href="/products"
               className="text-white hover:text-gray-200 transition-colors font-normal text-sm"
             >
               Products
             </Link>
             <Link
-              href="#"
+              href="/shop"
               className="text-white hover:text-gray-200 transition-colors font-normal text-sm"
             >
               Shop
             </Link>
             <Link
-              href="#"
+              href="/blogs"
               className="text-white hover:text-gray-200 transition-colors font-normal text-sm"
             >
               Blog
@@ -50,12 +50,12 @@ export default function Footer() {
           </div>
 
           {/* Go to top */}
-          <div className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-3">
             <span className="text-white font-normal text-sm">Go to top</span>
             <button className="w-10 h-10 bg-[#FF7900] rounded-full flex items-center justify-center hover:bg-[#e66a00] transition-colors">
               <ChevronUp size={20} className="text-white" />
             </button>
-          </div>
+          </Link>
         </div>
       </div>
 
