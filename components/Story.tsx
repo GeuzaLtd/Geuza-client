@@ -7,19 +7,19 @@ import { Recycle, HeartHandshake, Users, ChevronDown } from "lucide-react";
 const accordionItems = [
   {
     icon: Recycle,
-    title: "Eco-Crutches",
+    title: "Sustainability",
     content:
       "To create a sustainable future by transforming electronic waste into high-quality, affordable assistive devices. We are dedicated to reducing environmental impact while improving accessibility for people with disabilities.",
   },
   {
     icon: HeartHandshake,
-    title: "Walkers",
+    title: "Inclusion",
     content:
       "We envision a world where every individual has access to the tools they need to live a full and independent life, and where a circular economy benefits both people and the planet. Our goal is to be a global leader in inclusive innovation.",
   },
   {
     icon: Users,
-    title: "Prosthetics",
+    title: "Innovation",
     content:
       "Our work is made possible by a dedicated community of engineers, designers, volunteers, and partners. Together, we are building a movement that empowers individuals and fosters a sense of belonging and shared purpose.",
   },
