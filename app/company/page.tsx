@@ -15,7 +15,7 @@ export default function CompanyPage() {
       <main className="min-h-screen">
         {/* Thumbnail Image */}
         <ThumbnailImage
-          src="/images/company-2.jpeg"
+          src="/images/team.jpeg"
           alt="Company Thumbnail"
           className="w-full h-[350px] relative"
           imageClassName="object-[center_35%]"
@@ -32,16 +32,18 @@ export default function CompanyPage() {
             </div>
 
             {/* Right part - Paragraph and statistics */}
-            <div className="flex-1 space-y-8">
+            <div className="flex-1 space-y-3">
               <h3 className="text-[#FF7900] font-semibold text-md">
                 Who are we ?
               </h3>
               {/* Paragraph */}
               <p className="text-[#3C4049] text-sm leading-relaxed">
-                GEUZA is a Rwandan-based social enterprise committed to
-                innovation, inclusion, and sustainability. Our team combines
-                expertise in biomedical engineering, recycling, and tech to
-                create assistive devices from electronic waste.
+                Geuza is powered by a multidisciplinary, impact-driven team with
+                over 30 years of combined experience across engineering,
+                technology, science, healthcare, and sustainable innovation.
+                Together, we are building Africa’s first line of affordable,
+                smart, and eco-friendly assistive devices from recycled
+                materials, shaping a future where mobility is accessible to all.
               </p>
             </div>
           </div>
