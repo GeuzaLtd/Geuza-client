@@ -4,12 +4,12 @@ import { ChevronUp, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#065E06] px-20 py-10">
+    <footer className="w-full bg-[#065E06] px-4 md:px-20 py-8 md:py-10">
       {/* Upper section */}
-      <div className="mb-10">
-        <div className="w-full mx-auto flex justify-between items-center">
+      <div className="mb-8 md:mb-10">
+        <div className="w-full mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 mb-4 md:mb-0">
             <Link href="/">
               <Image
                 src="/images/logo.png"
@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation items */}
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4 md:space-x-6 mb-4 md:mb-0">
             <Link
               href="/company"
               className="text-white hover:text-gray-200 transition-colors font-normal text-sm"
@@ -60,8 +60,8 @@ export default function Footer() {
       </div>
 
       {/* Lower section */}
-      <div className="bg-[#042C04] px-10 py-6">
-        <div className="w-full mx-auto flex justify-between items-center">
+      <div className="bg-[#042C04] px-4 md:px-10 py-6">
+        <div className="w-full mx-auto flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
           {/* Contact information */}
           {/* <div className="flex items-center space-x-6"> */}
           <div className="flex items-center space-x-2">
@@ -79,7 +79,7 @@ export default function Footer() {
           {/* </div> */}
 
           {/* Copyright */}
-          <div className="text-white text-sm">
+          <div className="text-white text-sm text-center md:text-left">
             <span className="text-white text-sm font-semibold">
               © Geuza Ltd
             </span>{" "}

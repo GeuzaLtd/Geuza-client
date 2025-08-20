@@ -5,11 +5,11 @@ import { useState } from "react";
 export default function RegisterPage() {
   const [role, setRole] = useState("organization");
   return (
-    <div className="flex flex-col items-center w-full">
-      <h2 className="text-3xl font-bold text-[#009900] mb-8">
+    <div className="flex flex-col items-center w-full min-h-screen justify-center px-4 py-10 bg-white">
+      <h2 className="text-2xl md:text-3xl font-bold text-[#009900] mb-8">
         Sign up to Geuza!
       </h2>
-      <form className="w-full flex flex-col space-y-4">
+      <form className="w-full max-w-md flex flex-col space-y-4">
         <input
           type="text"
           placeholder="Full name"
@@ -35,7 +35,7 @@ export default function RegisterPage() {
           placeholder="Confirm password"
           className="w-full px-4 py-3 rounded-full bg-[#F1F2F4] text-sm text-[#111827] placeholder-[#9EA2AD] outline-none border-none"
         />
-        <div className="flex items-center space-x-6 mt-2">
+        <div className="flex flex-row justify-center items-center sm:space-x-6 mt-2 gap-2 sm:gap-0">
           <label className="flex items-center cursor-pointer space-x-2">
             <span
               className={`w-5 h-5 rounded-full border-2 ${

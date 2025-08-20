@@ -27,14 +27,14 @@ export default function Testimonial() {
     dispatch(fetchTestimonials({ token: token || "" }));
   }, [dispatch, token]);
   return (
-    <section className="w-full px-20 py-20 bg-white">
+    <section className="w-full px-4 md:px-20 py-16 md:py-20 bg-white">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center space-y-8">
         {/* Section Header */}
-        <div className="flex flex-col items-center space-y-4 w-1/2 mx-auto">
+        <div className="flex flex-col items-center space-y-4 w-full md:w-1/2 mx-auto">
           <span className="bg-[#FF79001A] text-[#FF7900] text-xs font-medium px-4 py-2 rounded-full uppercase">
             Testimonial
           </span>
-          <h2 className="text-5xl font-bold text-[#348E38] leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#348E38] leading-tight">
             What our clients say.
           </h2>
         </div>
@@ -45,18 +45,15 @@ export default function Testimonial() {
         </div> */}
 
         {/* Swiper Carousel */}
-        <div className="w-full pt-10 pb-8">
+        <div className="w-full pt-6 md:pt-10 pb-8">
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={32}
-            slidesPerView={1}
+            spaceBetween={16}
             breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
+              0: { slidesPerView: 1 },
+              640: { slidesPerView: 1.2 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
             }}
             loop={testimonialsToDisplay.length > 3}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
@@ -68,7 +65,7 @@ export default function Testimonial() {
               <SwiperSlide key={idx}>
                 {({ isActive }) => (
                   <div
-                    className={`h-full border border-[#EBECEF] rounded-xl bg-white flex flex-col items-start justify-between w-[376px] mx-auto p-6 transition-all duration-300
+                    className={`border border-[#EBECEF] rounded-xl bg-white flex flex-col items-start justify-between w-full max-w-xs md:w-[376px] h-auto md:h-[159.59px] mx-auto p-4 md:p-6 transition-all duration-300
                       ${isActive ? "translate-y-8 z-10" : "translate-y-0 z-0"}
                     `}
                   >
@@ -83,12 +80,12 @@ export default function Testimonial() {
                           className="object-cover"
                         />
                       </div>
-                      <span className="text-black font-bold text-base">
+                      <span className="text-black font-bold text-sm md:text-base">
                         {testimonial.companyName}
                       </span>
                     </div>
                     {/* Message */}
-                    <p className="text-black/70 text-sm font-light text-left">
+                    <p className="text-black/70 text-xs md:text-sm font-light text-left">
                       {testimonial.testimonial}
                     </p>
                   </div>

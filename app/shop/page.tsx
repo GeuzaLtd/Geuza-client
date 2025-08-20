@@ -35,19 +35,19 @@ export default function ShopPage() {
     <div>
       <Banner />
       <Navbar />
-      <section className="w-[90%] mx-auto px-4 md:px-20 py-20 bg-white">
-        <div className="w-full max-w-7xl mx-auto flex flex-col items-start space-y-8">
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-20 py-8 sm:py-12 md:py-16 lg:py-20 bg-white">
+        <div className="w-full max-w-7xl mx-auto flex flex-col items-start space-y-6 sm:space-y-8">
           {/* Header */}
-          <div className="flex flex-col items-start md:items-center space-y-4 w-full mx-auto">
-            <span className="bg-[#FF79001A] text-[#FF7900] text-xs font-medium px-4 py-2 rounded-full uppercase md:self-start">
+          <div className="flex flex-col items-start space-y-4 sm:space-y-6 w-full mx-auto">
+            <span className="bg-[#FF79001A] text-[#FF7900] text-xs font-medium px-3 sm:px-4 py-2 rounded-full uppercase">
               Shop
             </span>
-            <div className="flex flex-row items-center justify-between w-full">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#348E38] leading-tight">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full space-y-4 sm:space-y-0">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#348E38] leading-tight">
                 Assistive Devices
               </h2>
-              <form className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-full max-w-md justify-end">
-                {/* <label className="text-sm text-gray-600">
+              {/* <form className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-full max-w-md justify-end"> */}
+              {/* <label className="text-sm text-gray-600">
                   Price range (RWF)
                 </label>
                 <input
@@ -63,31 +63,34 @@ export default function ShopPage() {
                 <Button type="submit" className="px-6">
                   Filter
                 </Button> */}
-                <button
-                  type="button"
-                  className="relative ml-2 p-2 rounded-full hover:bg-gray-100 transition-colors"
-                  onClick={() => setCartOpen(true)}
-                  aria-label="Open cart"
-                >
-                  <ShoppingCart size={24} className="text-[#348E38]" />
-                  {cartItems.length > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-[#348E38] text-white text-xs rounded-full px-1.5 py-0.5">
-                      {cartItems.length}
-                    </span>
-                  )}
-                </button>
-              </form>
+              <button
+                type="button"
+                className="relative p-2 rounded-full hover:bg-gray-100 transition-colors self-start sm:self-auto"
+                onClick={() => setCartOpen(true)}
+                aria-label="Open cart"
+              >
+                <ShoppingCart
+                  size={20}
+                  className="sm:w-6 sm:h-6 text-[#348E38]"
+                />
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#348E38] text-white text-xs rounded-full px-1.5 py-0.5">
+                    {cartItems.length}
+                  </span>
+                )}
+              </button>
+              {/* </div> */}
             </div>
           </div>
           {/* Price Filter */}
           {/* Product Grid */}
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-8">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-4 sm:pt-6 md:pt-8">
             {loading ? (
-              <div className="col-span-full text-center text-gray-500">
+              <div className="col-span-full text-center text-gray-500 py-8">
                 Loading...
               </div>
             ) : products.length === 0 ? (
-              <div className="col-span-full text-center text-gray-500">
+              <div className="col-span-full text-center text-gray-500 py-8">
                 No products found.
               </div>
             ) : (

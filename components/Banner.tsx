@@ -1,44 +1,58 @@
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 export default function Banner() {
   return (
-    <section className="w-full bg-[#348E38] py-3 px-10">
-      <div className="w-full mx-auto flex justify-between items-center">
+    <section
+      id="banner"
+      className="w-full bg-[#348E38] py-2 px-4 md:py-3 md:px-10 overflow-x-auto"
+    >
+      <div className="w-full mx-auto flex flex-row justify-between items-center">
         {/* Left side - Text with icon */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2 md:space-x-3">
           <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-            <span className="text-[#348E38] font-bold text-sm">G</span>
+            <span className="text-[#348E38] font-bold text-xs md:text-sm">
+              G
+            </span>
           </div>
-          <span className="text-white font-normal text-sm">
-            Welcome to Geuza - Transform Your Experiences
+          <span className="text-white font-normal text-xs md:text-sm text-center whitespace-nowrap">
+            Welcome to Geuza - Transform Your Experience
           </span>
         </div>
 
-        {/* Right side - Social media icons */}
-        <div className="flex items-center space-x-4">
+        {/* Right side - Social media icons (hidden on small screens) */}
+        <div className="hidden sm:flex items-center space-x-3 md:space-x-4">
           <a
             href="#"
             className="text-white hover:text-gray-200 transition-colors"
+            aria-label="Facebook"
           >
-            <Facebook size={15} />
+            <FaFacebookF size={14} className="md:size-[15px]" />
           </a>
           <a
             href="#"
             className="text-white hover:text-gray-200 transition-colors"
+            aria-label="Twitter"
           >
-            <Twitter size={15} />
+            <FaTwitter size={14} className="md:size-[15px]" />
           </a>
           <a
             href="#"
             className="text-white hover:text-gray-200 transition-colors"
+            aria-label="Instagram"
           >
-            <Instagram size={15} />
+            <FaInstagram size={14} className="md:size-[15px]" />
           </a>
           <a
             href="#"
             className="text-white hover:text-gray-200 transition-colors"
+            aria-label="LinkedIn"
           >
-            <Linkedin size={15} />
+            <FaLinkedinIn size={14} className="md:size-[15px]" />
           </a>
         </div>
       </div>
