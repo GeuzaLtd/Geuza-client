@@ -22,6 +22,7 @@ export default function Testimonial() {
   const { testimonials } = useSelector(
     (state: RootState) => state.testimonials
   );
+  const testimonialsToDisplay = [...testimonials, ...testimonials];
   useEffect(() => {
     dispatch(fetchTestimonials({ token: token || "" }));
   }, [dispatch, token]);
@@ -38,6 +39,11 @@ export default function Testimonial() {
           </h2>
         </div>
 
+        {/* Debug Info
+        <div className="text-sm text-gray-500 mb-4">
+          Loaded {testimonials.length} testimonials
+        </div> */}
+
         {/* Swiper Carousel */}
         <div className="w-full pt-6 md:pt-10 pb-8">
           <Swiper
@@ -49,13 +55,13 @@ export default function Testimonial() {
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
-            loop={true}
+            loop={testimonialsToDisplay.length > 3}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
             grabCursor
             centeredSlides
             style={{ paddingBottom: 40 }}
           >
-            {testimonials.map((testimonial, idx) => (
+            {testimonialsToDisplay.map((testimonial, idx) => (
               <SwiperSlide key={idx}>
                 {({ isActive }) => (
                   <div

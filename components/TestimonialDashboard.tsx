@@ -36,6 +36,11 @@ export default function TestimonialDashboard() {
     dispatch(fetchTestimonials({ token: token || "" }));
   }, [dispatch, token]);
 
+  // Debug: Log testimonials count
+  useEffect(() => {
+    console.log("Testimonials loaded:", testimonials.length, testimonials);
+  }, [testimonials]);
+
   const openAddModal = () => {
     setModalMode("add");
     setNewTestimonial({ companyName: "", testimonial: "", companyImage: null });
@@ -95,45 +100,53 @@ export default function TestimonialDashboard() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 bg-white rounded-xl p-6">
-      {testimonials.slice(0, 3).map((item) => (
-        <div key={item.id} className="rounded-xl flex flex-col items-start">
-          <div className="relative w-full h-36 mb-4 flex items-center justify-center shadow rounded-lg">
-            <Image
-              src={item.companyImage}
-              alt={item.companyName}
-              fill
-              className="object-cover rounded-lg"
-            />
-          </div>
-          <div className="flex justify-between w-full">
-            <div className="flex flex-col items-start">
-              <div className="font-semibold text-sm text-[#67748E] mb-1">
-                Testimonial
+      {/* Scrollable Testimonials Container */}
+      <div className="col-span-3 overflow-x-auto">
+        <div className="flex gap-6">
+          {testimonials.map((item) => (
+            <div
+              key={item.id}
+              className="rounded-xl flex flex-col items-start w-1/3 flex-shrink-0"
+            >
+              <div className="relative w-full h-36 mb-4 flex items-center justify-center shadow rounded-lg">
+                <Image
+                  src={item.companyImage}
+                  alt={item.companyName}
+                  fill
+                  className="object-cover rounded-lg"
+                />
               </div>
-              <div className="font-bold text-lg text-black mb-1">
-                {item.companyName}
-              </div>
-              <div className="text-xs text-[#AFAFAF] mb-1">
-                {item.testimonial}
+              <div className="flex justify-between w-full">
+                <div className="flex flex-col items-start">
+                  <div className="font-semibold text-sm text-[#67748E] mb-1">
+                    Testimonial
+                  </div>
+                  <div className="font-bold text-lg text-black mb-1">
+                    {item.companyName}
+                  </div>
+                  <div className="text-xs text-[#AFAFAF] mb-1">
+                    {item.testimonial}
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <button
+                    className="text-[#009900] flex items-center text-sm mb-1"
+                    onClick={() => openEditModal(item)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="text-red-500 flex items-center text-sm mb-1"
+                    onClick={() => openDeleteModal(item.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="flex flex-col">
-              <button
-                className="text-[#009900] flex items-center text-sm mb-1"
-                onClick={() => openEditModal(item)}
-              >
-                Edit
-              </button>
-              <button
-                className="text-red-500 flex items-center text-sm mb-1"
-                onClick={() => openDeleteModal(item.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
-      ))}
+      </div>
       {/* Add New Card */}
       <div
         className="bg-white rounded-xl p-6 shadow flex flex-col items-center justify-center cursor-pointer hover:bg-[#F5F5F5]"

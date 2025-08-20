@@ -77,19 +77,24 @@ export default function Shop() {
                       className="object-contain rounded-xl"
                     />
                   </div>
-                  <div className="flex items-center justify-between mt-4">
+                  <div className="flex items-start justify-between mt-4">
                     <div className="flex flex-col items-start">
-                      <span className="text-black font-semibold text-base md:text-lg">
+                      <span className="text-black text-start font-semibold text-lg">
                         {device.name}
                       </span>
                       <span
                         className={`text-xs mt-1 ${
-                          device.minimum > 0
+                          device.minimum > 0 ||
+                          device.name.includes("Coming soon")
                             ? "text-[#348E38]"
                             : "text-gray-400"
                         }`}
                       >
-                        {device.minimum > 0 ? "In stock" : "Out of stock"}
+                        {device.name.includes("Coming soon")
+                          ? "Coming soon"
+                          : device.minimum > 0
+                          ? "In stock"
+                          : "Out of stock"}
                       </span>
                     </div>
                     <button className="bg-white rounded-full p-2 md:p-3 shadow hover:bg-gray-100 transition-colors">

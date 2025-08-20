@@ -90,7 +90,7 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
             src={blog.thumbnailImage || ""}
             alt={blog.title}
             fill
-            className="object-cover"
+            className="object-cover object-[center_25%]"
           />
         </div>
 
@@ -158,7 +158,7 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
                           src={relatedBlog.thumbnailImage || ""}
                           alt={relatedBlog.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300 object-[center_25%]"
                         />
                       </div>
 

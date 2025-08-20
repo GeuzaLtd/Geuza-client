@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, Product } from "@/redux/features/productSlice";
 import { RootState, AppDispatch } from "@/redux/store";
 import ShopProductCard from "@/components/ShopProductCard";
-import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Banner from "@/components/Banner";
@@ -47,44 +46,40 @@ export default function ShopPage() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#348E38] leading-tight">
                 Assistive Devices
               </h2>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                <form className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
-                  <label className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
-                    Price range (RWF)
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="number"
-                      placeholder="Min"
-                      className="border rounded px-2 py-1 w-16 sm:w-20 text-sm"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Max"
-                      className="border rounded px-2 py-1 w-16 sm:w-20 text-sm"
-                    />
-                  </div>
-                  <Button type="submit" className="px-4 sm:px-6 text-sm">
-                    Filter
-                  </Button>
-                </form>
-                <button
-                  type="button"
-                  className="relative p-2 rounded-full hover:bg-gray-100 transition-colors self-start sm:self-auto"
-                  onClick={() => setCartOpen(true)}
-                  aria-label="Open cart"
-                >
-                  <ShoppingCart
-                    size={20}
-                    className="sm:w-6 sm:h-6 text-[#348E38]"
-                  />
-                  {cartItems.length > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-[#348E38] text-white text-xs rounded-full px-1.5 py-0.5">
-                      {cartItems.length}
-                    </span>
-                  )}
-                </button>
-              </div>
+              {/* <form className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-full max-w-md justify-end"> */}
+              {/* <label className="text-sm text-gray-600">
+                  Price range (RWF)
+                </label>
+                <input
+                  type="number"
+                  placeholder="Min"
+                  className="border rounded px-2 py-1 w-20"
+                />
+                <input
+                  type="number"
+                  placeholder="Max"
+                  className="border rounded px-2 py-1 w-20"
+                />
+                <Button type="submit" className="px-6">
+                  Filter
+                </Button> */}
+              <button
+                type="button"
+                className="relative p-2 rounded-full hover:bg-gray-100 transition-colors self-start sm:self-auto"
+                onClick={() => setCartOpen(true)}
+                aria-label="Open cart"
+              >
+                <ShoppingCart
+                  size={20}
+                  className="sm:w-6 sm:h-6 text-[#348E38]"
+                />
+                {cartItems.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-[#348E38] text-white text-xs rounded-full px-1.5 py-0.5">
+                    {cartItems.length}
+                  </span>
+                )}
+              </button>
+              {/* </div> */}
             </div>
           </div>
           {/* Price Filter */}

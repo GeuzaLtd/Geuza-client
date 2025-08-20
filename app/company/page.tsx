@@ -15,9 +15,10 @@ export default function CompanyPage() {
       <main className="min-h-screen">
         {/* Thumbnail Image */}
         <ThumbnailImage
-          src="/images/company.jpg"
+          src="/images/team.jpeg"
           alt="Company Thumbnail"
-          className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] relative"
+          className="w-full h-[350px] relative"
+          imageClassName="object-[center_35%]"
         />
 
         {/* Content Section */}
@@ -37,10 +38,12 @@ export default function CompanyPage() {
               </h3>
               {/* Paragraph */}
               <p className="text-[#3C4049] text-sm sm:text-base leading-relaxed">
-                GEUZA is a Rwandan-based social enterprise committed to
-                innovation, inclusion, and sustainability. Our team combines
-                expertise in biomedical engineering, recycling, and tech to
-                create assistive devices from electronic waste.
+                Geuza is powered by a multidisciplinary, impact-driven team with
+                over 30 years of combined experience across engineering,
+                technology, science, healthcare, and sustainable innovation.
+                Together, we are building Africa’s first line of affordable,
+                smart, and eco-friendly assistive devices from recycled
+                materials, shaping a future where mobility is accessible to all.
               </p>
             </div>
           </div>
@@ -56,10 +59,10 @@ export default function CompanyPage() {
             <div className="w-full flex justify-center">
               <div className="w-full max-w-4xl h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px] relative">
                 <Image
-                  src="/images/company.jpg"
+                  src="/images/company-2.jpeg"
                   alt="Company"
                   fill
-                  className="object-cover object-[center_10%] rounded-lg sm:rounded-xl"
+                  className="object-cover object-[center_35%] rounded-xl"
                 />
               </div>
             </div>
