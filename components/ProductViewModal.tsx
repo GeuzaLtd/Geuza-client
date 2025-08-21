@@ -18,6 +18,15 @@ interface ProductViewModalProps {
   product: Product | null;
 }
 
+interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+  message?: string;
+}
+
 export default function ProductViewModal({
   open,
   onClose,
@@ -77,9 +86,14 @@ export default function ProductViewModal({
       toast.success("Pre-order placed successfully!");
       router.push("/my-orders");
       onClose();
-    } catch (err: any) {
-      setError(err.response.data.message || "Unknown error occurred");
-      toast.error("Failed to place pre-order: " + err.response.data.message);
+    } catch (err: unknown) {
+      const error = err as ApiError;
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Unknown error occurred";
+      setError(errorMessage);
+      toast.error("Failed to place pre-order: " + errorMessage);
     } finally {
       setIsLoading(false);
     }

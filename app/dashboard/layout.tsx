@@ -122,13 +122,11 @@ export default function DashboardLayout({
               </div>
             </div>
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#009900] flex items-center justify-center bg-white">
-              <Image
-                src="/images/1.webp"
-                alt={user?.fullName || "User"}
-                width={48}
-                height={48}
-                className="object-cover w-full h-full"
-              />
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <span className="text-xl font-semibold text-gray-600">
+                  {user?.fullName?.[0]?.toUpperCase() || "U"}
+                </span>
+              </div>
             </div>
           </div>
         </header>

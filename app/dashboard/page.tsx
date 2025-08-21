@@ -3,8 +3,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPartners } from "@/redux/features/partnerSlice";
 import { RootState, AppDispatch } from "@/redux/store";
-import Image from "next/image";
 import dynamic from "next/dynamic";
+import { fetchProducts } from "@/redux/features/productSlice";
+import { fetchBlogs } from "@/redux/features/blogSlice";
+import { fetchOrders } from "@/redux/features/orderSlice";
+import { FaNewspaper } from "react-icons/fa";
+import { FaHandshakeSimple, FaShop } from "react-icons/fa6";
+import { BsCartCheckFill } from "react-icons/bs";
+
 const PartnersDashboard = dynamic(
   () => import("@/components/PartnersDashboard"),
   { ssr: false }
@@ -17,37 +23,6 @@ const TestimonialDashboard = dynamic(
   { ssr: false }
 );
 
-const stats = [
-  {
-    label: "Total Orders",
-    value: "40,689",
-    icon: "/images/1.webp",
-    trend: "+8.5% Up from yesterday",
-    trendColor: "text-green-600",
-  },
-  {
-    label: "Pending Delivery",
-    value: "10,293",
-    icon: "/images/2.jpeg",
-    trend: "+1.3% Up from past week",
-    trendColor: "text-green-600",
-  },
-  {
-    label: "Payment Due",
-    value: "RWF 8900",
-    icon: "/images/3.png",
-    trend: "-4.3% Down from yesterday",
-    trendColor: "text-red-500",
-  },
-  {
-    label: "Delivery Completed",
-    value: "2040",
-    icon: "/images/1.webp",
-    trend: "+1.8% Up from yesterday",
-    trendColor: "text-green-600",
-  },
-];
-
 const tabs = [
   { key: "partners", label: "Partners" },
   { key: "testimonials", label: "Testimonials" },
@@ -58,12 +33,48 @@ export default function DashboardPage() {
   const dispatch = useDispatch<AppDispatch>();
   const token = useSelector((state: RootState) => state.auth.token);
   const [selectedTab, setSelectedTab] = useState("partners");
+  const { products } = useSelector((state: RootState) => state.products);
+  const { partners } = useSelector((state: RootState) => state.partners);
+  const { blogs } = useSelector((state: RootState) => state.blogs);
+  const { orders } = useSelector((state: RootState) => state.orders);
+
+  const stats = [
+    {
+      label: "Total Orders",
+      value: orders.length || 0,
+      icon: <BsCartCheckFill className="text-4xl text-green-600" />,
+      trend: "+8.5% Up from yesterday",
+      trendColor: "text-green-600",
+    },
+    {
+      label: "Total Products",
+      value: products.length || 0,
+      icon: <FaShop className="text-4xl text-purple-600" />,
+      trend: "+1.3% Up from past week",
+      trendColor: "text-green-600",
+    },
+    {
+      label: "Total Partners",
+      value: partners.length || 0,
+      icon: <FaHandshakeSimple className="text-4xl text-blue-600" />,
+      trend: "-4.3% Down from yesterday",
+      trendColor: "text-red-500",
+    },
+    {
+      label: "Total Blogs",
+      value: blogs.length || 0,
+      icon: <FaNewspaper className="text-4xl text-amber-600" />,
+      trend: "+1.8% Up from yesterday",
+      trendColor: "text-green-600",
+    },
+  ];
 
   useEffect(() => {
-    if (selectedTab === "partners") {
-      dispatch(fetchPartners({ token: token || "" }));
-    }
-  }, [dispatch, selectedTab, token]);
+    dispatch(fetchPartners({ token: token || "" }));
+    dispatch(fetchProducts());
+    dispatch(fetchBlogs({ token: token || "" }));
+    dispatch(fetchOrders({ userType: "ADMIN" }));
+  }, [dispatch, token]);
 
   return (
     <div className="w-full h-full bg-[#F5F6FA] p-8">
@@ -75,13 +86,7 @@ export default function DashboardPage() {
             className="bg-white rounded-xl p-6 shadow flex flex-col"
           >
             <div className="flex items-center gap-3 mb-2">
-              <Image
-                src={stat.icon}
-                alt={stat.label}
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
+              {stat.icon}
               <span className="text-lg font-semibold text-black">
                 {stat.value}
               </span>

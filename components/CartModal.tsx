@@ -18,6 +18,15 @@ interface SpecialInstructions {
   [key: string]: string;
 }
 
+interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+  message?: string;
+}
+
 export default function CartModal({ open, onClose }: CartModalProps) {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -54,10 +63,14 @@ export default function CartModal({ open, onClose }: CartModalProps) {
       dispatch(clearCart());
       onClose();
       router.push("/my-orders");
-    } catch (err: any) {
-      console.log("hiii err", err);
-      setError(err.response.data.message || "Unknown error occurred");
-      toast.error("Failed to place pre-order: " + err.response.data.message);
+    } catch (err: unknown) {
+      const error = err as ApiError;
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Unknown error occurred";
+      setError(errorMessage);
+      toast.error("Failed to place pre-order: " + errorMessage);
     } finally {
       setIsLoading(false);
     }

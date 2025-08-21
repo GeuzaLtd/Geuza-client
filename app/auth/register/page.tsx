@@ -82,8 +82,7 @@ export default function RegisterPage() {
         }
       }
     } catch (error) {
-      toast.error("Failed to register");
-      setError("Failed to register");
+      console.error("Hiii theree", error);
     } finally {
       setLoading(false);
     }
