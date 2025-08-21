@@ -37,6 +37,7 @@ export default function ProductViewModal({
   const [specialInstructions, setSpecialInstructions] = useState("");
   const { token, user } = useSelector((state: RootState) => state.auth);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   if (!open || !product) return null;
 
   // Compose all images: thumbnailImage + images[]
@@ -76,10 +77,9 @@ export default function ProductViewModal({
       toast.success("Pre-order placed successfully!");
       router.push("/my-orders");
       onClose();
-    } catch (err: unknown) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Unknown error occurred";
-      toast.error("Failed to place pre-order: " + errorMessage);
+    } catch (err: any) {
+      setError(err.response.data.message || "Unknown error occurred");
+      toast.error("Failed to place pre-order: " + err.response.data.message);
     } finally {
       setIsLoading(false);
     }
@@ -215,6 +215,10 @@ export default function ProductViewModal({
                 rows={3}
               />
             </div>
+          )}
+
+          {error && (
+            <p className="text-red-500 text-sm text-center mb-5">{error}</p>
           )}
 
           <div className="flex gap-2 w-full mt-4">

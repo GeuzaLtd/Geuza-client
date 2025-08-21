@@ -24,12 +24,14 @@ export default function CartModal({ open, onClose }: CartModalProps) {
   const items = useSelector((state: RootState) => state.cart.items);
   const { token, user } = useSelector((state: RootState) => state.auth);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [specialInstructions, setSpecialInstructions] =
     useState<SpecialInstructions>({});
 
   if (!open) return null;
 
   const handlePreOrder = async () => {
+    setError("");
     if (items.length === 0) return;
 
     if (!user || user.role !== "CLIENT") {
@@ -52,10 +54,10 @@ export default function CartModal({ open, onClose }: CartModalProps) {
       dispatch(clearCart());
       onClose();
       router.push("/my-orders");
-    } catch (err: unknown) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Unknown error occurred";
-      toast.error("Failed to place pre-order: " + errorMessage);
+    } catch (err: any) {
+      console.log("hiii err", err);
+      setError(err.response.data.message || "Unknown error occurred");
+      toast.error("Failed to place pre-order: " + err.response.data.message);
     } finally {
       setIsLoading(false);
     }
@@ -156,6 +158,9 @@ export default function CartModal({ open, onClose }: CartModalProps) {
             ))
           )}
         </div>
+        {error && (
+          <p className="text-red-500 text-sm text-center mb-5">{error}</p>
+        )}
 
         <Button
           className="w-full mb-2 bg-[#348E38] hover:bg-[#256b28] text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
