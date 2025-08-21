@@ -46,7 +46,7 @@ export default function ShopProductCard({
           disabled={outOfStock}
           onClick={(e) => e.stopPropagation()}
         >
-          <ShoppingCart size={20} className="text-black" />
+          <ShoppingCart size={20} className="text-black" onClick={onClick} />
         </button>
       </div>
     </div>

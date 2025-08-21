@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/redux/features/productSlice";
 import { RootState, AppDispatch } from "@/redux/store";
+import Link from "next/link";
 
 const support = [
   {
@@ -46,7 +47,7 @@ export default function Shop() {
             Shop
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-[#348E38] leading-tight">
-            Assistive devices.
+            Assistive devices
           </h2>
         </div>
 
@@ -68,7 +69,10 @@ export default function Shop() {
           >
             {products.map((device, idx) => (
               <SwiperSlide key={idx}>
-                <div className="bg-[#F1F2F4] flex flex-col justify-between h-[340px] md:h-[380px] w-[90vw] max-w-xs mx-auto shadow-sm p-4 md:p-6 relative">
+                <Link
+                  href="/shop"
+                  className="bg-[#F1F2F4] flex flex-col justify-between h-[340px] md:h-[380px] w-[90vw] max-w-xs mx-auto shadow-sm p-4 md:p-6 relative"
+                >
                   <div className="w-full h-40 md:h-full relative mb-4">
                     <Image
                       src={device.thumbnailImage}
@@ -101,7 +105,7 @@ export default function Shop() {
                       <ShoppingCart size={20} className="text-black" />
                     </button>
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

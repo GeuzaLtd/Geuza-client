@@ -22,7 +22,7 @@ export default function CartModal({ open, onClose }: CartModalProps) {
   const dispatch = useDispatch();
   const router = useRouter();
   const items = useSelector((state: RootState) => state.cart.items);
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token, user } = useSelector((state: RootState) => state.auth);
   const [isLoading, setIsLoading] = useState(false);
   const [specialInstructions, setSpecialInstructions] =
     useState<SpecialInstructions>({});
@@ -31,6 +31,11 @@ export default function CartModal({ open, onClose }: CartModalProps) {
 
   const handlePreOrder = async () => {
     if (items.length === 0) return;
+
+    if (!user || user.role !== "CLIENT") {
+      toast.error("Please login to pre-order");
+      return;
+    }
 
     setIsLoading(true);
     const orderItems = items.map((item) => ({

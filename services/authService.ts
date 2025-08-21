@@ -23,3 +23,41 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const registerUser = createAsyncThunk(
+  "auth/registerUser",
+  async (
+    {
+      fullName,
+      email,
+      phone,
+      password,
+      type,
+    }: {
+      fullName: string;
+      email: string;
+      phone: string;
+      password: string;
+      type: "ORGANIZATION" | "INDIVIDUAL";
+    },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axiosInstance.post("/auth/register", {
+        fullName,
+        email,
+        phone,
+        password,
+        type,
+      });
+      if (!response.data.success) {
+        return rejectWithValue(response.data || "Registration failed");
+      }
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response.data.errors || error.message || "Registration failed"
+      );
+    }
+  }
+);

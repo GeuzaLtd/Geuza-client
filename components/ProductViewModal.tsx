@@ -35,7 +35,7 @@ export default function ProductViewModal({
   const [quantity, setQuantity] = useState<number>(product?.minimum || 1);
   const [showInstructions, setShowInstructions] = useState(false);
   const [specialInstructions, setSpecialInstructions] = useState("");
-  const { token } = useSelector((state: RootState) => state.auth);
+  const { token, user } = useSelector((state: RootState) => state.auth);
   const [isLoading, setIsLoading] = useState(false);
   if (!open || !product) return null;
 
@@ -47,6 +47,11 @@ export default function ProductViewModal({
   const maxQty = product.maximum;
 
   const handlePreOrder = async () => {
+    if (!user || user.role !== "CLIENT") {
+      toast.error("Please login to pre-order");
+      return;
+    }
+
     if (!showInstructions) {
       setShowInstructions(true);
       return;
@@ -224,21 +229,18 @@ export default function ProductViewModal({
             >
               ADD TO CART
             </Button>
-            <Button variant="outline" className="flex-1 font-semibold">
-              CHECKOUT NOW
+            <Button
+              className="bg-[#FF7900] hover:bg-[#e66a00] text-white font-semibold"
+              onClick={handlePreOrder}
+              disabled={isLoading}
+            >
+              {isLoading
+                ? "SUBMITTING..."
+                : showInstructions
+                ? "SUBMIT PRE-ORDER"
+                : "Pre-order NOW"}
             </Button>
           </div>
-          <Button
-            className="w-full mt-4 bg-[#FF7900] hover:bg-[#e66a00] text-white font-semibold"
-            onClick={handlePreOrder}
-            disabled={isLoading}
-          >
-            {isLoading
-              ? "SUBMITTING..."
-              : showInstructions
-              ? "SUBMIT PRE-ORDER"
-              : "Pre-order NOW"}
-          </Button>
           {showInstructions && (
             <Button
               variant="outline"
