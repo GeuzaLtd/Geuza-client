@@ -1,9 +1,6 @@
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import Link from "next/link";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Banner() {
   return (
@@ -26,34 +23,42 @@ export default function Banner() {
 
         {/* Right side - Social media icons (hidden on small screens) */}
         <div className="hidden sm:flex items-center space-x-3 md:space-x-4">
-          <a
-            href="#"
+          <Link
+            href="https://www.facebook.com/geuzaltd"
             className="text-white hover:text-gray-200 transition-colors"
             aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FaFacebookF size={14} className="md:size-[15px]" />
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="https://x.com/GeuzaLtd"
             className="text-white hover:text-gray-200 transition-colors"
             aria-label="Twitter"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <FaTwitter size={14} className="md:size-[15px]" />
-          </a>
-          <a
-            href="#"
+            <FaXTwitter size={14} className="md:size-[15px]" />
+          </Link>
+          <Link
+            href="https://www.instagram.com/geuza_ltd?igsh=N3NwZGppdnBucnNx"
             className="text-white hover:text-gray-200 transition-colors"
             aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FaInstagram size={14} className="md:size-[15px]" />
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="https://www.linkedin.com/company/geuza-ltd/"
             className="text-white hover:text-gray-200 transition-colors"
             aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <FaLinkedinIn size={14} className="md:size-[15px]" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
