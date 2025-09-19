@@ -201,40 +201,50 @@ export const getAllMessages = createAsyncThunk(
   }
 );
 
-// export const updateMessageStatus = createAsyncThunk(
-//   "messages/updateStatus",
-//   async (
-//     { messageId, status }: { messageId: string; status: "read" | "unread" },
-//     { rejectWithValue }
-//   ) => {
-//     try {
-//       const { data } = await axiosInstance.patch(
-//         `/messages/${messageId}/status`,
-//         { status }
-//       );
-//       return data;
-//     } catch (err: any) {
-//       return rejectWithValue(
-//         err?.response?.data?.message ||
-//           err?.message ||
-//           "Failed to update status"
-//       );
-//     }
-//   }
-// );
+export const updateMessageStatus = createAsyncThunk(
+  "messages/updateStatus",
+  async (
+    {
+      messageId,
+      status,
+      token,
+    }: { messageId: string; status: "read" | "unread"; token: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      const { data } = await axiosInstance.patch(
+        `/messages/${messageId}/status`,
+        { status },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      return data;
+    } catch (err: any) {
+      return rejectWithValue(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to update status"
+      );
+    }
+  }
+);
 
-// export const deleteMessage = createAsyncThunk(
-//   "messages/delete",
-//   async (messageId: string, { rejectWithValue }) => {
-//     try {
-//       await axiosInstance.delete(`/messages/${messageId}`);
-//       return messageId;
-//     } catch (err: any) {
-//       return rejectWithValue(
-//         err?.response?.data?.message ||
-//           err?.message ||
-//           "Failed to delete message"
-//       );
-//     }
-//   }
-// );
+export const deleteMessage = createAsyncThunk(
+  "messages/delete",
+  async (
+    { messageId, token }: { messageId: string; token: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axiosInstance.delete(`/messages/${messageId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data.data;
+    } catch (err: any) {
+      return rejectWithValue(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to delete message"
+      );
+    }
+  }
+);

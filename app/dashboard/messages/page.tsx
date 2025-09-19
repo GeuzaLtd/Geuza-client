@@ -2,7 +2,11 @@
 import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
-import { getAllMessages } from "@/services/adminService";
+import {
+  deleteMessage,
+  getAllMessages,
+  updateMessageStatus,
+} from "@/services/adminService";
 import { format } from "date-fns";
 import {
   MdEmail,
@@ -76,31 +80,37 @@ const MessagesPage: React.FC = () => {
     dispatch(getAllMessages(token || ""));
   }, [dispatch]);
 
-  //   const handleToggleRead = async (
-  //     e: React.MouseEvent,
-  //     messageId: string,
-  //     currentStatus: string
-  //   ) => {
-  //     e.stopPropagation();
-  //     try {
-  //       const status = currentStatus === "read" ? "unread" : "read";
-  //       await dispatch(
-  //         updateMessageStatus({ messageId, status: status as "read" | "unread" })
-  //       ).unwrap();
-  //     } catch (error) {
-  //       toast.error("Failed to update message status. Please try again.");
-  //     }
-  //   };
+  const handleToggleRead = async (
+    e: React.MouseEvent,
+    messageId: string,
+    currentStatus: string
+  ) => {
+    e.stopPropagation();
+    try {
+      const status = currentStatus === "read" ? "unread" : "read";
+      await dispatch(
+        updateMessageStatus({
+          messageId,
+          status: status as "read" | "unread",
+          token: token || "",
+        })
+      ).unwrap();
+      dispatch(getAllMessages(token || ""));
+    } catch (error) {
+      toast.error("Failed to update message status. Please try again.");
+    }
+  };
 
-  //   const handleDelete = async (e: React.MouseEvent, messageId: string) => {
-  //     e.stopPropagation();
-  //     try {
-  //       await dispatch(deleteMessage(messageId)).unwrap();
-  //       toast.success("Message deleted successfully");
-  //     } catch (error) {
-  //       toast.error("Failed to delete message. Please try again.");
-  //     }
-  //   };
+  const handleDelete = async (e: React.MouseEvent, messageId: string) => {
+    e.stopPropagation();
+    try {
+      await dispatch(deleteMessage({ messageId, token: token || "" })).unwrap();
+      toast.success("Message deleted successfully");
+      dispatch(getAllMessages(token || ""));
+    } catch (error) {
+      toast.error("Failed to delete message. Please try again.");
+    }
+  };
 
   const filteredMessages = useMemo(() => {
     if (!searchValue.trim()) return messages;
@@ -134,7 +144,17 @@ const MessagesPage: React.FC = () => {
         />
       )}
       <div className="w-full flex justify-between px-20 pt-10 pb-5">
-        <h2 className="text-2xl font-semibold text-black mb-8">Messages</h2>
+        <div className="text-2xl font-semibold text-black mb-8 flex items-center gap-2">
+          Messages{" "}
+          <div className="text-sm font-medium bg-green-600 text-white rounded-md w-6 h-6 flex items-center justify-center">
+            <h2>
+              {
+                messages.filter((message: any) => message.status === "unread")
+                  .length
+              }
+            </h2>
+          </div>
+        </div>
         <input
           type="text"
           className="h-[40px] w-[200px] bg-[#f7f3f1] rounded-full text-sm px-5 text-gray-500 outline-[#FFBF4B] border-none"
@@ -227,9 +247,9 @@ const MessagesPage: React.FC = () => {
                         <div className="flex items-center justify-end space-x-2">
                           <div className="relative group">
                             <button
-                              //   onClick={(e) =>
-                              //     handleToggleRead(e, message._id, message.status)
-                              //   }
+                              onClick={(e) =>
+                                handleToggleRead(e, message.id, message.status)
+                              }
                               className={`p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer ${
                                 message.status === "read"
                                   ? "text-gray-400"
@@ -250,7 +270,7 @@ const MessagesPage: React.FC = () => {
                           </div>
                           <div className="relative group">
                             <button
-                              //   onClick={(e) => handleDelete(e, message._id)}
+                              onClick={(e) => handleDelete(e, message.id)}
                               className="text-red-600 hover:text-red-900 p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
                             >
                               <HiTrash className="h-5 w-5" />
