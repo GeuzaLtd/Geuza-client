@@ -8,7 +8,7 @@ import Shop from "@/components/Shop";
 import Testimonial from "@/components/Testimonial";
 import Team from "@/components/Team";
 import Partners from "@/components/Partners";
-import Newsletter from "@/components/Newsletter";
+// import Newsletter from "@/components/Newsletter";
 import Contact from "@/components/Contact";
 
 export default function Home() {

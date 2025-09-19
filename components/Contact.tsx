@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { submitContactForm } from "../services/client";
+import {
+  submitContactForm,
+  type SubmitContactFormPayload,
+} from "../services/client";
 import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -53,7 +56,9 @@ const Contact: React.FC = () => {
     }
 
     try {
-      await dispatch(submitContactForm(formData as any)).unwrap();
+      await dispatch(
+        submitContactForm(formData as SubmitContactFormPayload)
+      ).unwrap();
       toast.success("Message sent successfully!");
       setFormData(initialState);
     } catch (error) {
@@ -96,7 +101,7 @@ const Contact: React.FC = () => {
           <div className="h-4 w-2 bg-[#E09F1F] ml-2"></div>
         </div>
         <p className="md:w-1/2 w-3/4 md:text-2xl text-xl mb-2 capitalize font-bold my-5">
-          We'd love to hear from you!
+          We&apos;d love to hear from you!
         </p>
         <p className="md:w-2/3 w-full text-sm mb-8">
           Feel free to reach out to us with any questions or concerns.

@@ -17,9 +17,10 @@ import {
 import { HiTrash } from "react-icons/hi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import type { MessageItem } from "@/redux/features/messageSlice";
 
 interface MessageModalProps {
-  message: any;
+  message: MessageItem | null;
   onClose: () => void;
 }
 
@@ -27,7 +28,7 @@ const MessageModal: React.FC<MessageModalProps> = ({ message, onClose }) => {
   if (!message) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 relative max-h-[90vh] flex flex-col">
         <button
           onClick={onClose}
@@ -73,19 +74,27 @@ const MessagesPage: React.FC = () => {
   );
   const { token } = useSelector((state: RootState) => state.auth);
   const [searchValue, setSearchValue] = React.useState("");
-  const [selectedMessage, setSelectedMessage] = React.useState<any>(null);
+  const [selectedMessage, setSelectedMessage] =
+    React.useState<MessageItem | null>(null);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getAllMessages(token || ""));
-  }, [dispatch]);
+  }, [dispatch, token]);
+
+  const handleOpenMessageModal = (message: MessageItem) => {
+    setSelectedMessage(message);
+    handleToggleRead(null, message.id, "unread");
+  };
 
   const handleToggleRead = async (
-    e: React.MouseEvent,
+    e: React.MouseEvent | null,
     messageId: string,
     currentStatus: string
   ) => {
-    e.stopPropagation();
+    if (e) {
+      e.stopPropagation();
+    }
     try {
       const status = currentStatus === "read" ? "unread" : "read";
       await dispatch(
@@ -97,7 +106,10 @@ const MessagesPage: React.FC = () => {
       ).unwrap();
       dispatch(getAllMessages(token || ""));
     } catch (error) {
-      toast.error("Failed to update message status. Please try again.");
+      toast.error(
+        (error as string) ||
+          "Failed to update message status. Please try again."
+      );
     }
   };
 
@@ -108,7 +120,9 @@ const MessagesPage: React.FC = () => {
       toast.success("Message deleted successfully");
       dispatch(getAllMessages(token || ""));
     } catch (error) {
-      toast.error("Failed to delete message. Please try again.");
+      toast.error(
+        (error as string) || "Failed to delete message. Please try again."
+      );
     }
   };
 
@@ -116,7 +130,7 @@ const MessagesPage: React.FC = () => {
     if (!searchValue.trim()) return messages;
 
     return messages.filter(
-      (message: any) =>
+      (message: MessageItem) =>
         (message.fullName || "")
           .toLowerCase()
           .includes(searchValue.toLowerCase()) ||
@@ -149,8 +163,9 @@ const MessagesPage: React.FC = () => {
           <div className="text-sm font-medium bg-green-600 text-white rounded-md w-6 h-6 flex items-center justify-center">
             <h2>
               {
-                messages.filter((message: any) => message.status === "unread")
-                  .length
+                messages.filter(
+                  (message: MessageItem) => message.status === "unread"
+                ).length
               }
             </h2>
           </div>
@@ -199,10 +214,10 @@ const MessagesPage: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredMessages.map((message: any) => (
+                  {filteredMessages.map((message: MessageItem) => (
                     <tr
-                      key={message._id}
-                      onClick={() => setSelectedMessage(message)}
+                      key={message.id}
+                      onClick={() => handleOpenMessageModal(message)}
                       className={`transition-colors ${
                         message.status === "read"
                           ? "bg-gray-200 hover:bg-gray-300"
