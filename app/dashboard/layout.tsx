@@ -7,6 +7,7 @@ import {
   FaShoppingCart,
   FaSearch,
   FaSignOutAlt,
+  FaEnvelope,
 } from "react-icons/fa";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +19,7 @@ const menuItems = [
   { name: "Dashboard", icon: <FaTachometerAlt />, href: "/dashboard" },
   { name: "Products", icon: <FaBoxOpen />, href: "/dashboard/products" },
   { name: "Orders", icon: <FaShoppingCart />, href: "/dashboard/orders" },
+  { name: "Messages", icon: <FaEnvelope />, href: "/dashboard/messages" },
 ];
 
 export default function DashboardLayout({

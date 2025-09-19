@@ -1,4 +1,5 @@
 import axiosInstance from "@/utils/axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // ---------------------------------
 // Partners
@@ -177,3 +178,63 @@ export const deleteProduct = async (id: string, token: string) => {
   });
   return id;
 };
+
+// ---------------------------------
+// Messages
+// ---------------------------------
+
+export const getAllMessages = createAsyncThunk(
+  "messages/fetchAll",
+  async (token: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get("/messages/", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data.data.messages;
+    } catch (err: any) {
+      return rejectWithValue(
+        err?.response?.data?.message ||
+          err?.message ||
+          "Failed to fetch messages"
+      );
+    }
+  }
+);
+
+// export const updateMessageStatus = createAsyncThunk(
+//   "messages/updateStatus",
+//   async (
+//     { messageId, status }: { messageId: string; status: "read" | "unread" },
+//     { rejectWithValue }
+//   ) => {
+//     try {
+//       const { data } = await axiosInstance.patch(
+//         `/messages/${messageId}/status`,
+//         { status }
+//       );
+//       return data;
+//     } catch (err: any) {
+//       return rejectWithValue(
+//         err?.response?.data?.message ||
+//           err?.message ||
+//           "Failed to update status"
+//       );
+//     }
+//   }
+// );
+
+// export const deleteMessage = createAsyncThunk(
+//   "messages/delete",
+//   async (messageId: string, { rejectWithValue }) => {
+//     try {
+//       await axiosInstance.delete(`/messages/${messageId}`);
+//       return messageId;
+//     } catch (err: any) {
+//       return rejectWithValue(
+//         err?.response?.data?.message ||
+//           err?.message ||
+//           "Failed to delete message"
+//       );
+//     }
+//   }
+// );
