@@ -8,6 +8,7 @@ import testimonialReducer from "./features/testimonialSlice";
 import productReducer from "./features/productSlice";
 import cartReducer from "./features/cartSlice";
 import orderReducer from "./features/orderSlice";
+import messageReducer from "./features/messageSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   products: productReducer,
   cart: cartReducer,
   orders: orderReducer,
+  messages: messageReducer,
 });
 
 const persistConfig = {

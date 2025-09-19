@@ -8,7 +8,8 @@ import Shop from "@/components/Shop";
 import Testimonial from "@/components/Testimonial";
 import Team from "@/components/Team";
 import Partners from "@/components/Partners";
-import Newsletter from "@/components/Newsletter";
+// import Newsletter from "@/components/Newsletter";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -21,10 +22,10 @@ export default function Home() {
       <Shop />
       <Testimonial />
       <Team />
-      <Newsletter />
+      {/* <Newsletter /> */}
+      <Contact />
       <div className="h-[0.5px] bg-black mx-20" />
       <Partners />
-      {/* Additional sections will be added here */}
       <Footer />
     </main>
   );

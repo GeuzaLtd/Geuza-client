@@ -39,10 +39,10 @@ export default function MyOrdersPage() {
       <Banner />
       <Navbar />
       <ThumbnailImage
-        src="/images/company-2.jpeg"
+        src="/images/order.png"
         alt="Blogs Thumbnail"
         className="w-full h-[350px] relative"
-        imageClassName="object-[center_35%]"
+        imageClassName="object-[center_30%]"
       />
       <div className="max-w-4xl mx-auto py-12 px-4">
         <div className="flex items-center gap-4 my-12">

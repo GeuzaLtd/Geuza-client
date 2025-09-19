@@ -74,7 +74,9 @@ export default function Footer() {
           </div>
           <div className="flex items-center space-x-2">
             <MapPin size={16} className="text-[#FF7900]" />
-            <span className="text-white text-sm">Special Economic Zone</span>
+            <span className="text-white text-sm">
+              Nyarugenge Pension Plaza, KN 3 Rd
+            </span>
           </div>
           {/* </div> */}
 
