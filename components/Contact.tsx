@@ -77,7 +77,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="flex md:flex-row flex-col-reverse md:px-[77px] md:py-32 px-5 py-10 2xl:px-96">
+    <section className="flex md:flex-row flex-col-reverse md:px-32 md:py-20 px-5 py-10 2xl:px-96">
       <ToastContainer />
       {/* First Element */}
       <div
@@ -115,7 +115,7 @@ const Contact: React.FC = () => {
                 target="_blank"
                 className="text-white"
               >
-                3 KG 686 st, Kigali
+                Nyarugenge Pension Plaza, KN 3 Rd
               </a>
             </div>
           </div>
@@ -128,7 +128,7 @@ const Contact: React.FC = () => {
             <div className="text-sm">
               <p className="font-bold">Email</p>
               <a href="mailto:info@mozaikconcepts.com" className="text-white">
-                info@mozaikconcepts.com
+                info@geuza.com
               </a>
             </div>
           </div>
@@ -141,7 +141,7 @@ const Contact: React.FC = () => {
             <div className="text-sm">
               <p className="font-bold">Phone</p>
               <a href="tel:+250791903218" className="text-white">
-                +250 791 903 218
+                +250-796-084-144
               </a>
             </div>
           </div>

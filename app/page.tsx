@@ -22,12 +22,10 @@ export default function Home() {
       <Shop />
       <Testimonial />
       <Team />
-
-      <Newsletter />
+      {/* <Newsletter /> */}
+      <Contact />
       <div className="h-[0.5px] bg-black mx-20" />
       <Partners />
-      {/* Additional sections will be added here */}
-      <Contact />
       <Footer />
     </main>
   );
