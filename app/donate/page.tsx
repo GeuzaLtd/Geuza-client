@@ -1,10 +1,23 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Banner from "@/components/Banner";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
 const DonatePage: React.FC = () => {
+  // WhatsApp integration function
+  const handleDonateClick = () => {
+    const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+    const message = encodeURIComponent(
+      "Hi! I'm interested in making a donation to support Geuza's mission. Could you please provide me with donation details?"
+    );
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    window.open(whatsappURL, "_blank");
+  };
+
   return (
     <main className="w-full h-screen">
       <Banner />
@@ -20,20 +33,23 @@ const DonatePage: React.FC = () => {
         </p>
         <div className="flex items-center gap-4">
           <Button
+            onClick={handleDonateClick}
             className="rounded-[12px] bg-[#ff7900] hover:bg-[#e76a00]"
             size="lg"
           >
             Donate Now
           </Button>
-          <button className="rounded-[12px] px-4 py-2 border border-[#348e38] text-[#348e38] bg-transparent hover:border-[#2e7c32] hover:text-[#2e7c32]">
+          <Link
+            href="/company"
+            className="rounded-[12px] px-4 py-2 border border-[#348e38] text-[#348e38] bg-transparent hover:border-[#2e7c32] hover:text-[#2e7c32] cursor-pointer"
+          >
             Learn Our Mission
-          </button>
+          </Link>
         </div>
       </section>
 
       {/* Second section with background image */}
       <section className="w-full h-[40vh] relative">
-        {/* Background - use a decorative gradient fallback if no image available */}
         <div className="absolute inset-0">
           <Image
             src="/images/donate.jpg"
@@ -55,7 +71,10 @@ const DonatePage: React.FC = () => {
                 Give once or monthly
               </span>
             </div>
-            <div className="w-[50px] h-[50px] bg-[#348e38] flex items-center justify-center rounded-md">
+            <div
+              className="w-[50px] h-[50px] bg-[#348e38] flex items-center justify-center rounded-md cursor-pointer hover:bg-[#2e7c32]"
+              onClick={handleDonateClick}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="text-white"

@@ -107,11 +107,11 @@ export default function Navbar() {
           Sign in
         </Link>
         <Link
-          href="/auth/register"
+          href="/donate"
           className="h-10 px-6 py-2 rounded-full bg-[#FF7900] text-white hover:bg-[#e66a00] transition-colors font-medium"
           onClick={() => setMobileMenuOpen(false)}
         >
-          Sign up for free
+          Donate Now
         </Link>
       </>
     );
