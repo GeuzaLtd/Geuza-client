@@ -5,17 +5,13 @@ import { Button } from "@/components/ui/button";
 import Banner from "@/components/Banner";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import { handleWhatsAppInteraction } from "@/utils/func";
 
 const DonatePage: React.FC = () => {
-  // WhatsApp integration function
   const handleDonateClick = () => {
-    const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
-    const message = encodeURIComponent(
-      "Hi! I'm interested in making a donation to support Geuza's mission. Could you please provide me with donation details?"
-    );
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-
-    window.open(whatsappURL, "_blank");
+    const message =
+      "Hi! I'm interested in making a donation to support Geuza's mission. Could you please provide me with donation details?";
+    handleWhatsAppInteraction(message);
   };
 
   return (

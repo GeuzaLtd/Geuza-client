@@ -11,6 +11,7 @@ import { RootState } from "@/redux/store";
 import { displayActualColor } from "@/utils/client";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { handleWhatsAppInteraction } from "@/utils/func";
 
 interface ProductViewModalProps {
   open: boolean;
@@ -57,6 +58,12 @@ export default function ProductViewModal({
   const maxQty = product.maximum;
 
   const handlePreOrder = async () => {
+    // This is a template message to sent to the whatsapp API
+    const message =
+      "Hi! I have pre-ordered the following items: " +
+      product.name +
+      ` (x${quantity})` +
+      ". Could you please provide me with more details?";
     if (!user || user.role !== "CLIENT") {
       toast.error("Please login to pre-order");
       return;
@@ -84,6 +91,7 @@ export default function ProductViewModal({
         token || ""
       );
       toast.success("Pre-order placed successfully!");
+      handleWhatsAppInteraction(message);
       router.push("/my-orders");
       onClose();
     } catch (err: unknown) {

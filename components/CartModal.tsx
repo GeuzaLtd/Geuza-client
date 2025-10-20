@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { placeOrder } from "@/services/orderService";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { handleWhatsAppInteraction } from "@/utils/func";
 
 interface CartModalProps {
   open: boolean;
@@ -41,6 +42,13 @@ export default function CartModal({ open, onClose }: CartModalProps) {
 
   const handlePreOrder = async () => {
     setError("");
+    // This is a template message to sent to the whatsapp API
+    const message =
+      "Hi! I have pre-ordered the following items: " +
+      items
+        .map((item) => `${item.product.name} (x${item.quantity})`)
+        .join(", ") +
+      ". Could you please provide me with more details?";
     if (items.length === 0) return;
 
     if (!user || user.role !== "CLIENT") {
@@ -61,6 +69,7 @@ export default function CartModal({ open, onClose }: CartModalProps) {
       await placeOrder({ items: orderItems }, token || "");
       toast.success("Pre-order placed successfully!");
       dispatch(clearCart());
+      handleWhatsAppInteraction(message);
       onClose();
       router.push("/my-orders");
     } catch (err: unknown) {
