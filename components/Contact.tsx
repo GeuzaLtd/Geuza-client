@@ -236,6 +236,7 @@ const Contact: React.FC = () => {
           </div>
           <button
             type="submit"
+            disabled={loading}
             className="bg-[#E09F1F] text-white py-3 px-28 rounded text-sm my-10"
           >
             {loading ? "Sending..." : "Send Message"}
