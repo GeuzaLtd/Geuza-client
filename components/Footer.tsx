@@ -66,7 +66,7 @@ export default function Footer() {
           {/* <div className="flex items-center space-x-6"> */}
           <div className="flex items-center space-x-2">
             <Mail size={16} className="text-[#FF7900]" />
-            <span className="text-white text-sm">info@geuza.com</span>
+            <span className="text-white text-sm">info@geuza.africa</span>
           </div>
           <div className="flex items-center space-x-2">
             <Phone size={16} className="text-[#FF7900]" />
