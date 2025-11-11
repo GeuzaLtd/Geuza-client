@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
                 target="_blank"
                 className="text-white"
               >
-                Nyarugenge Pension Plaza, KN 3 Rd
+                Gasabo - Remera 42KG 1 Ave
               </a>
             </div>
           </div>
