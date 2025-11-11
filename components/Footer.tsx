@@ -75,7 +75,7 @@ export default function Footer() {
           <div className="flex items-center space-x-2">
             <MapPin size={16} className="text-[#FF7900]" />
             <span className="text-white text-sm">
-              Nyarugenge Pension Plaza, KN 3 Rd
+              Gasabo - Remera 42KG 1 Ave
             </span>
           </div>
           {/* </div> */}
