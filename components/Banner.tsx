@@ -51,7 +51,7 @@ export default function Banner() {
             <FaInstagram size={14} className="md:size-[15px]" />
           </Link>
           <Link
-            href="https://www.linkedin.com/company/geuza-ltd/"
+            href="https://www.linkedin.com/company/geuza-africa/"
             className="text-white hover:text-gray-200 transition-colors"
             aria-label="LinkedIn"
             target="_blank"

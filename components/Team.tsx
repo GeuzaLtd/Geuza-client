@@ -42,14 +42,14 @@ const team = [
     twitter: "#",
     instagram: "#",
   },
-  {
-    image: "/images/toussaint.jpg",
-    name: "Toussaint MANZI",
-    position: "Software Engineer",
-    linkedin: "#",
-    twitter: "#",
-    instagram: "#",
-  },
+  // {
+  //   image: "/images/toussaint.jpg",
+  //   name: "Toussaint MANZI",
+  //   position: "Software Engineer",
+  //   linkedin: "#",
+  //   twitter: "#",
+  //   instagram: "#",
+  // },
 ];
 
 export default function Team() {
