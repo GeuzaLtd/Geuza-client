@@ -6,7 +6,7 @@ export default function Hero() {
       className="w-full min-h-[calc(100vh-100px)] bg-cover bg-center bg-no-repeat flex items-center justify-center px-4 py-10 md:px-20 md:py-20"
       style={{ backgroundImage: "url(/images/hero.png)" }}
     >
-      <div className="w-full max-w-4xl flex flex-col items-center space-y-8 md:space-y-12">
+      <div className="w-full max-w-4xl flex flex-col items-center space-y-8 md:space-y-12" >
         {/* Part 1: Short text */}
         <div className="text-center">
           <p className="text-white text-base md:text-lg font-light">
