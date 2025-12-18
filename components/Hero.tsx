@@ -22,7 +22,7 @@ export default function Hero() {
         </div>
 
         {/* Part 3: Photos and text */}
-        <div className="flex flex-col md:flex-row items-center md:space-x-6 space-y-4 md:space-y-0" >
+        <div className="flex flex-col md:flex-row items-center md:space-x-6 space-y-4 md:space-y-0">
           {/* Three rounded photos */}
           <div className="flex items-center -space-x-2 md:-space-x-3 border border-[#CBEA7B] rounded-full p-1 md:p-2">
             <div className="w-8 h-8 md:w-[50px] md:h-[50px] rounded-full overflow-hidden">
