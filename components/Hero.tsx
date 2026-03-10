@@ -56,7 +56,7 @@ export default function Hero() {
 
           {/* Text */}
           <div className="text-white text-base md:text-lg font-medium text-center md:text-left">
-            65+ Lives Empowered
+            65+ Lives Empowered 
           </div>
         </div>
       </div>
