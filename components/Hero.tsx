@@ -17,7 +17,7 @@ export default function Hero() {
         {/* Part 2: Bigger text */}
         <div className="text-center">
           <h1 className="text-white text-3xl md:text-7xl font-bold leading-tight md:leading-tight">
-            Redefining smart Assistive devices
+            Transforming E-Waste into Smart Assistive Devices
           </h1>
         </div>
 
@@ -56,7 +56,7 @@ export default function Hero() {
 
           {/* Text */}
           <div className="text-white text-base md:text-lg font-medium text-center md:text-left">
-            65+ Lives Empowered
+            65+ Lives Empowered 
           </div>
         </div>
       </div>
