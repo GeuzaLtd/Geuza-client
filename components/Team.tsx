@@ -27,9 +27,9 @@ const team = [
     instagram: "#",
   },
   {
-    image: "/images/noel.jpeg",
-    name: "Marie Noëlle Kanyamuneza",
-    position: "Technical Manager",
+    image: "/images/innocent_picture.png",
+    name: "Innocent MBONYINSHUTI",
+    position: "Prosthetist and Orthotist",
     linkedin: "#",
     twitter: "#",
     instagram: "#",
@@ -37,19 +37,19 @@ const team = [
   {
     image: "/images/ariane.jpeg",
     name: "Ariane MUKESHIMANA",
-    position: "Operations Manager",
+    position: "Operations Manager Operation & Administrative Manager",
     linkedin: "#",
     twitter: "#",
     instagram: "#",
   },
-  // {
-  //   image: "/images/toussaint.jpg",
-  //   name: "Toussaint MANZI",
-  //   position: "Software Engineer",
-  //   linkedin: "#",
-  //   twitter: "#",
-  //   instagram: "#",
-  // },
+  {
+    image: "/images/rebero_picture.png ",
+    name: "William REBERO",
+    position: "Accountant Consultant",
+    linkedin: "#",
+    twitter: "#",
+    instagram: "#",
+  },
 ];
 
 export default function Team() {
