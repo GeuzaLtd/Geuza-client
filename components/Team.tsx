@@ -43,7 +43,7 @@ const team = [
     instagram: "#",
   },
   {
-    image: "/images/rebero_picture.png ",
+    image: "/images/rebero_picture.png",
     name: "William REBERO",
     position: "Accountant Consultant",
     linkedin: "#",
