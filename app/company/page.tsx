@@ -227,7 +227,7 @@ export default function CompanyPage() {
               </div>
               <div className="flex-1 space-y-2">
                 <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 4 — The First Product, The First Team</p>
-                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Our team. Our product. A milestone we're proud of.</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Our team. Our product. A milestone we&apos;re proud of.</h3>
                 <p className="text-[#3C4049] text-sm leading-relaxed">
                   This is the Geuza team standing with our first completed product —
                   a moment that marks the end of a prototype phase and the beginning
