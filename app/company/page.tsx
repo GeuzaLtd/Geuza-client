@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Banner from "@/components/Banner";
 import Values from "@/components/Values";
+import ClientTestimonials from "@/components/ClientTestimonials";
 
 export default function CompanyPage() {
   return (
@@ -25,12 +26,11 @@ export default function CompanyPage() {
                 We turn{" "}
                 <span className="text-[#348E38]">e-waste</span>{" "}
                 into devices that{" "}
-                <span className="text-[#FF7900]">move lives.</span>
+                <span className="text-[#FF7900]">transform lives.</span>
               </h1>
               <p className="text-[#3C4049] text-base md:text-lg leading-relaxed max-w-lg">
-                Geuza — Swahili for &ldquo;to transform&rdquo; — is Africa&apos;s
-                first company engineering smart, affordable assistive devices
-                from recycled electronic materials.
+                Geuza is a Swahili word means  “transform” , it&apos;s an African company that engineers smart, affordable assistive technologies from electronic waste, expanding access for people living with disabilities, injuries, aging-related conditions, and chronic illnesses while reducing environmental harm.
+
               </p>
               <div className="flex flex-wrap gap-6 pt-2">
                 <div>
@@ -74,12 +74,10 @@ export default function CompanyPage() {
               The problem we solve
             </p>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              Millions of tonnes of e-waste. Millions of people without mobility aids.
+              Two Growing Crises. One Untapped Opportunity.
             </h2>
             <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              Africa generates over 2.9 million tonnes of e-waste annually — most buried
-              in landfills. At the same time, 50+ million Africans live with a disability
-              and cannot access affordable assistive devices. We saw two crises and built one answer.
+             Africa generates more than 2.9 million tonnes of electronic waste every year, while over half of those who need assistive technologies still lack access to them. Two challenges growing side by side, that&apos;s where GEUZA comes in.
             </p>
           </div>
         </section>
@@ -105,17 +103,13 @@ export default function CompanyPage() {
                 Our founding idea
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#348E38] leading-tight">
-                &ldquo;What if the electronic devices thrown away today could help someone walk tomorrow?&rdquo;
+                &ldquo;What if the electronics discarded today could power the assistive technologies of tomorrow?&rdquo;
               </h2>
               <p className="text-[#3C4049] text-sm md:text-base leading-relaxed">
-                Geuza was born from a single radical insight — that discarded electronics
-                still hold enormous material value. Recycled metals and salvaged components,
-                when reimagined through precision engineering, can be shaped into world-class
-                assistive devices at a fraction of conventional cost.
+               GEUZA was born from a bold insight: the devices we throw away still contain valuable materials and untapped potential. Through circular engineering and advanced design, these resources can be transformed into high-quality assistive technologies at a fraction of the traditional cost.
               </p>
               <p className="text-[#3C4049] text-sm md:text-base leading-relaxed">
-                That insight became a company. That company is building Africa&apos;s first
-                line of smart, eco-friendly mobility aids.
+                That insight became a company. Today, GEUZA is building a new generation of smart, sustainable assistive technologies designed to expand access across Africa and beyond.
               </p>
             </div>
           </div>
@@ -126,10 +120,10 @@ export default function CompanyPage() {
           <div className="max-w-6xl mx-auto space-y-14">
             <div className="text-center space-y-3">
               <span className="inline-block bg-[#348E38]/10 text-[#348E38] text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full">
-                How we got here
+                OUR JOURNEY so far
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#3C4049]">
-                From a wooden pallet to a production line
+                From an idea into a manufacturing company
               </h2>
             </div>
 
@@ -140,20 +134,19 @@ export default function CompanyPage() {
               </div>
               <div className="relative w-full md:w-64 h-52 rounded-2xl overflow-hidden shadow flex-shrink-0">
                 <Image
-                  src="/images/geuza-team-testing-raw-material.jpeg"
+                  src="/images/step1.jpeg"
                   alt="Testing raw recycled material"
                   fill
                   className="object-cover object-center"
                 />
               </div>
               <div className="flex-1 space-y-2">
-                <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 1 — It Starts With the Waste</p>
-                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Granule by granule. Testing what e-waste can become.</h3>
+                <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 1 — Material Research & Sourcing
+                  
+                </p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Turning waste into engineering-grade materials</h3>
                 <p className="text-[#3C4049] text-sm leading-relaxed">
-                  Before any device is built, our team analyses recovered e-waste materials —
-                  testing their properties, durability, and suitability for structural use.
-                  This is where transformation begins: at a workbench, with discarded material
-                  and a question — can this support a human being?
+                  Our journey began with testing recovered electronic plastics and components to understand their strength, durability, and structural potential. Through materials research and testing, we confirmed that recycled e-waste meets the standards required for assistive device manufacturing.
                 </p>
               </div>
             </div>
@@ -167,7 +160,7 @@ export default function CompanyPage() {
               </div>
               <div className="relative w-full md:w-64 h-52 rounded-2xl overflow-hidden shadow flex-shrink-0">
                 <Image
-                  src="/images/Our V1- Crutches(Prototype).jpeg"
+                  src="/images/step2.jpeg"
                   alt="V1 Prototype"
                   fill
                   className="object-cover"
@@ -175,11 +168,9 @@ export default function CompanyPage() {
               </div>
               <div className="flex-1 space-y-2">
                 <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 2 — The First Prototype</p>
-                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Two crutches. A wooden pallet. Proof it worked.</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Proof that circular engineering works</h3>
                 <p className="text-[#3C4049] text-sm leading-relaxed">
-                  Our very first device was built by hand from salvaged metal tubing recovered from
-                  discarded electronics. Imperfect, raw, and laid on a pallet — but it worked.
-                  It proved that e-waste could support a human body in motion.
+                  Our prototype was built from salvaged materials recovered from discarded electronics. Simple but functional, it demonstrated that recycled components could be engineered into reliable assistive devices capable of supporting real human use.
                 </p>
               </div>
             </div>
@@ -193,51 +184,71 @@ export default function CompanyPage() {
               </div>
               <div className="relative w-full md:w-64 h-52 rounded-2xl overflow-hidden shadow flex-shrink-0">
                 <Image
-                  src="/images/production.jpeg"
+                  src="/images/step3.jpeg"
                   alt="Production Workshop"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="flex-1 space-y-2">
-                <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 3 — Building at Scale</p>
-                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">A real workshop. A trained local team.</h3>
+                <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 3 — Product Development & Manufacturing</p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">From prototype to real production</h3>
                 <p className="text-[#3C4049] text-sm leading-relaxed">
-                  We built a production workshop staffed by young African engineers and technicians.
-                  Every device manufactured locally — creating dignified jobs while diverting
-                  harmful electronics from landfills.
+                 With successful prototypes, Geuza transitioned into structured product development and manufacturing. Our team refined designs, improved material processing, and prepared production of assistive devices that meet quality, durability, and usability standards.
                 </p>
               </div>
             </div>
 
             <div className="border-l-2 border-dashed border-[#348E38]/30 h-8 ml-6" />
-
-            {/* Step 4 — Field Testing */}
             <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#FF7900] text-white font-bold flex items-center justify-center text-lg shadow">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#348E38] text-white font-bold flex items-center justify-center text-lg shadow">
                 4
               </div>
               <div className="relative w-full md:w-64 h-52 rounded-2xl overflow-hidden shadow flex-shrink-0">
                 <Image
-                  src="/images/geuza_collage_post.jpeg"
-                  alt="Geuza Team Field Testing"
+                  src="/images/step4.jpeg"
+                  alt="Our Smart technology"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+             <div className="flex-1 space-y-2">
+                <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 4 — Smart Assistive Technology</p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Engineering the next generation of assistive solutions</h3>
+                <p className="text-[#3C4049] text-sm leading-relaxed">
+                Geuza began developing smart assistive devices, starting from smart crutches, enhanced with connected technology, opening new possibilities for improved rehabilitation insights and future healthcare integration.
+                </p>
+              </div>
+            </div>
+
+
+            {/* Step 5 — Field Testing */}
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#FF7900] text-white font-bold flex items-center justify-center text-lg shadow">
+                5
+              </div>
+              <div className="relative w-full md:w-64 h-52 rounded-2xl overflow-hidden shadow flex-shrink-0">
+                <Image
+                  src="/images/step5.jpeg"
+                  alt="Our Patners"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="flex-1 space-y-2">
-                <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 4 — The First Product, The First Team</p>
-                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Our team. Our product. A milestone we&apos;re proud of.</h3>
+                <p className="text-[#FF7900] text-xs font-semibold uppercase tracking-wide">Step 5 — Trusted Partnerships & Recognition</p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#3C4049]">Working with institutions shaping innovation and standards</h3>
                 <p className="text-[#3C4049] text-sm leading-relaxed">
-                  This is the Geuza team standing with our first completed product —
-                  a moment that marks the end of a prototype phase and the beginning
-                  of something real. Built from recycled materials, assembled by a
-                  passionate local team, and ready to change lives.
+                 Geuza collaborates with leading institutions and partners, including Carnegie Mellon University, Africa (CMU), Rwanda Standards Board (RSB), Rwanda FDA, UNDP through the Timbuktoo HealthTech Program, the Government of Rwanda through Hanga Pitchfest, BPN Rwanda, Enviroserve Rwanda, and Unipod—strengthening our technology, standards, and scalable growth across Africa.
                 </p>
               </div>
             </div>
           </div>
+
+          
         </section>
+
+        
 
         {/* ── 5. MISSION / VISION ───────────────────────────────────────── */}
         <section className="w-full bg-white py-16 md:py-24 px-4 md:px-10">
@@ -274,6 +285,7 @@ export default function CompanyPage() {
         </section>
 
         <div className="h-[0.5px] bg-[#EBECEE] mx-4 sm:mx-6 md:mx-10 lg:mx-20" />
+        <ClientTestimonials />
         <Partners />
         <Team />
       </main>

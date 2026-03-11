@@ -32,11 +32,11 @@ export default function Testimonial() {
         {/* Section Header */}
         <div className="flex flex-col items-center space-y-4 w-full md:w-1/2 mx-auto">
           <span className="bg-[#FF79001A] text-[#FF7900] text-xs font-medium px-4 py-2 rounded-full uppercase">
-            Testimonial
+            Testimonials
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-[#348E38] leading-tight">
+          {/* <h2 className="text-3xl md:text-5xl font-bold text-[#348E38] leading-tight">
             What our clients say.
-          </h2>
+          </h2> */}
         </div>
 
         {/* Debug Info

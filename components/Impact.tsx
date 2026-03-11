@@ -33,15 +33,11 @@ export default function Impact() {
           {/* Right – Content */}
           <div className="w-full lg:w-1/2 space-y-6 md:space-y-8">
             <h2 className="text-3xl md:text-5xl font-bold text-[#348E38] leading-tight">
-              Turning e-waste into life-changing assistive devices.
+              Turning electronic waste into life-changing assistive technology.
             </h2>
 
             <p className="text-[#3C4049] text-sm md:text-base leading-relaxed">
-              At GEUZA, we champion a circular economy by merging technology and
-              sustainability to transform e-waste into smart, affordable mobility
-              aids — crutches, walkers, and prosthetics — that empower people with
-              disabilities. Every device we build diverts harmful electronics from
-              landfills and gives them a second life.
+              At GEUZA, we transform discarded electronics into smart, affordable assistive devices through circular innovation and advanced technology, expanding access to rehabilitation and disability support while giving e-waste a second life.
             </p>
 
             {/* Impact statistics */}

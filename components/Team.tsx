@@ -37,7 +37,7 @@ const team = [
   {
     image: "/images/ariane.jpeg",
     name: "Ariane MUKESHIMANA",
-    position: "Operations Manager Operation & Administrative Manager",
+    position: "Operations Manager",
     linkedin: "#",
     twitter: "#",
     instagram: "#",

@@ -9,19 +9,19 @@ const accordionItems = [
     icon: Recycle,
     title: "Sustainability",
     content:
-      "To create a sustainable future by transforming electronic waste into high-quality, affordable assistive devices. We are dedicated to reducing environmental impact while improving accessibility for people with disabilities.",
+      "We advance a circular innovation model that transforms electronic waste into high-quality, affordable assistive technologies, reducing environmental harm while expanding access to essential support solutions for people living with disabilities, injuries, aging-related conditions, and other long-term health needs.",
   },
   {
     icon: HeartHandshake,
     title: "Inclusion",
     content:
-      "We envision a world where every individual has access to the tools they need to live a full and independent life, and where a circular economy benefits both people and the planet. Our goal is to be a global leader in inclusive innovation.",
+      "GEUZA envisions a future where access to assistive technology is not a privilege but a universal standard, where innovation restores independence, circular solutions protect our planet, and no one is left behind in the progress of technology.",
   },
   {
     icon: Users,
     title: "Innovation",
     content:
-      "Our work is made possible by a dedicated community of engineers, designers, volunteers, and partners. Together, we are building a movement that empowers individuals and fosters a sense of belonging and shared purpose.",
+      " At the intersection of circular engineering and health technology, electronic waste is transformed into smart assistive devices powered by IoT sensors and intelligent data systems, unlocking new possibilities for rehabilitation, accessibility, and the future of assistive technology.",
   },
 ];
 
@@ -44,9 +44,7 @@ export default function Story() {
             Transforming E-Waste into Empowerment
           </h2>
           <p className="text-[#3C4049] text-base md:max-w-2xl">
-            Born from a vision to address both disability access and
-            environmental waste, GEUZA has grown into a movement for inclusive
-            circular solutions.
+             As the digital world grows, so does electronic waste. GEUZA transforms this growing burden into inclusive, sustainable innovation that expands access to essential assistive technologies while protecting our planet.
           </p>
         </div>
 

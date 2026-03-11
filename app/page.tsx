@@ -5,11 +5,12 @@ import Hero from "@/components/Hero";
 import Impact from "@/components/Impact";
 import Story from "@/components/Story";
 import Shop from "@/components/Shop";
-import Testimonial from "@/components/Testimonial";
+// import Testimonial from "@/components/Testimonial";
 import Team from "@/components/Team";
 import Partners from "@/components/Partners";
 // import Newsletter from "@/components/Newsletter";
 import Contact from "@/components/Contact";
+import ClientTestimonials from "@/components/ClientTestimonials";
 
 export default function Home() {
   return (
@@ -20,7 +21,8 @@ export default function Home() {
       <Impact />
       <Story />
       <Shop />
-      <Testimonial />
+      {/* <Testimonial /> */}
+      <ClientTestimonials />
       <Team />
       {/* <Newsletter /> */}
       <Contact />
