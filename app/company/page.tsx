@@ -262,17 +262,13 @@ export default function CompanyPage() {
               <div className="flex-1 space-y-3">
                 <h3 className="text-[#FF7900] text-sm font-semibold uppercase tracking-wide">Mission</h3>
                 <p className="text-[#3C4049] text-sm md:text-base leading-relaxed">
-                  To transform lives by designing smart, affordable mobility devices that combine
-                  sustainable recycled materials with advanced technology — making mobility
-                  accessible, safe, and empowering for those who need it most.
+                  To transform lives by designing smart, affordable assistive devices that combine sustainable recycled materials with advanced technology and making devices accessible, safe, and empowering for those who need it most.
                 </p>
               </div>
               <div className="flex-1 space-y-3 lg:border-l lg:border-[#EBECEE] lg:pl-10">
                 <h3 className="text-[#FF7900] text-sm font-semibold uppercase tracking-wide">Vision</h3>
                 <p className="text-[#3C4049] text-sm md:text-base leading-relaxed">
-                  An inclusive Africa where innovation, sustainability, and technology converge
-                  to transform mobility — restoring independence through every breakthrough
-                  assistive device we design.
+                  An inclusive Africa where innovation, sustainability, and technology converge to transform lives and restoring independence through every breakthrough assistive device we design.
                 </p>
               </div>
             </div>
